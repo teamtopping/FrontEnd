@@ -17,19 +17,19 @@ interface StoryProps {
   component: ComponentType;
   params?: {[key: string]: unknown};
 }
+const Stack = createStackNavigator();
 
 const StoryNavigator = (props: StoryProps) => {
-  const Navigation = createStackNavigator();
-
   return (
-    <NavigationContainer>
-      <Navigation.Navigator screenOptions={{headerShown: false}}>
-        <Navigation.Screen
+    <NavigationContainer independent={true}>
+      <Stack.Navigator>
+        <Stack.Screen
           name={props.name}
           component={props.component}
           initialParams={props.params}
+          options={{header: () => null}}
         />
-      </Navigation.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

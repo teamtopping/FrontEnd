@@ -14,7 +14,7 @@ export type AuthLoadingPageNP = CompositeNavigationProp<
 const AuthLoadingPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const navigation = useNavigation<AuthLoadingPageNP>();
-
+  console.log('here');
   return <AuthLoadingTemplate text={'AuthLoading'} />;
 };
 

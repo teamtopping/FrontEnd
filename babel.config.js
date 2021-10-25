@@ -25,14 +25,17 @@ module.exports = {
         },
       },
     ],
-    ["dotenv-import", {
-      "moduleName": "@env",
-      "path": ".env",
-      "blacklist": null,
-      "whitelist": null,
-      "safe": false,
-      "allowUndefined": false
-    }],
+    [
+      'dotenv-import',
+      {
+        moduleName: '@env',
+        path: '.env',
+        blacklist: null,
+        whitelist: null,
+        safe: false,
+        allowUndefined: false,
+      },
+    ],
     // ['@babel/plugin-proposal-class-properties', { loose: true }], // Cannot use with storybook
     ['transform-inline-environment-variables'],
   ],
@@ -40,5 +43,5 @@ module.exports = {
     production: {
       plugins: ['transform-remove-console'],
     },
-  }
+  },
 };
