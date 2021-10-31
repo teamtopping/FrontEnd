@@ -7,7 +7,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {maxScale} from '~/constants/theme';
+import {colors, maxScale} from '~/constants/theme';
 
 export interface Props {
   containerStyle?: ViewStyle;
@@ -23,14 +23,16 @@ const PublicButton = ({disabled = false, ...props}: Props) => {
     return {
       ...props.buttonStyle,
       opacity: disabled ? 1 : undefined,
-      backgroundColor: disabled ? '#D8D9DE' : props.buttonStyle.backgroundColor,
+      backgroundColor: disabled
+        ? colors.GRAY05
+        : props.buttonStyle.backgroundColor,
     };
   }, [disabled, props.buttonStyle]);
 
   const textStyle = useMemo((): TextStyle => {
     return {
       ...props.textStyle,
-      color: disabled ? '#A5A7AB' : props.textStyle.color,
+      color: disabled ? colors.GRAY04 : props.textStyle.color,
     };
   }, [disabled, props.textStyle]);
   return (

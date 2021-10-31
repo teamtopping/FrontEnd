@@ -2,8 +2,28 @@ import {StyleSheet} from 'react-native';
 import {scale} from 'react-native-size-matters';
 
 export const colors = {
-  /** Text Color */
-  HighEmphasis: '#FFFFFF',
+  // Main
+  MAIN: '#3C4650',
+
+  // Sub
+  SUB_SKYBLUE: '#0FB9E1',
+  SUB_PURPLE: '#AF6EFF',
+  SUB_YELLOW: '#FFDC55',
+  SUB_PINK: '#FF5A96',
+
+  // Gray
+  GRAY01: '#212224',
+  GRAY02: '#404244',
+  GRAY03: '#707175',
+  GRAY04: '#A5A7AB',
+  GRAY05: '#D8D9DE',
+  GRAY06: '#F4F5F5',
+  FFF: '#FFF',
+
+  SUCCESS: '#4BAF69',
+  ERROR_ALERT: '#FF5555',
+  WARNING: '#FA833D',
+  INFORMATION: '#4696F5',
 };
 
 export const SMALL_DEVICE = {

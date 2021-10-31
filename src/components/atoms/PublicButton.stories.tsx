@@ -3,7 +3,7 @@ import {withKnobs} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react-native';
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {maxScale} from '~/constants/theme';
+import {colors, maxScale} from '~/constants/theme';
 import PublicButton from './PublicButton';
 
 storiesOf('components|atoms', module)
@@ -44,29 +44,29 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   button1: {
-    backgroundColor: '#3C4650',
+    backgroundColor: colors.MAIN,
     width: maxScale(320),
     height: maxScale(52),
   },
   buttonText1: {
-    color: '#FFFFFF',
+    color: colors.FFF,
   },
   button2: {
     borderWidth: 1,
-    borderColor: '#D8D9DE',
+    borderColor: colors.GRAY05,
     width: maxScale(320),
     height: maxScale(52),
   },
   buttonText2: {
-    color: '#404244',
+    color: colors.GRAY02,
   },
   button3: {
     borderWidth: 1,
-    borderColor: '#D8D9DE',
+    borderColor: colors.GRAY05,
     width: maxScale(240),
     height: maxScale(40),
   },
   buttonText3: {
-    color: '#707175',
+    color: colors.GRAY03,
   },
 });
