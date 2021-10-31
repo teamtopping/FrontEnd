@@ -13,7 +13,7 @@
     "test": "jest",
     "lint": "eslint .",
     "clean": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf node_modules/ && yarn",
-    "storybook": "start-storybook -p 7007 -h 192.168.219.110",
+    "storybook": "(adb reverse tcp:7007 tcp:7007 || true) && start-storybook",
     "build-storybook": "build-storybook",
     "prestory": "rnstl"
   },
