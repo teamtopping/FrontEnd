@@ -5,9 +5,9 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import PublicTextInput from './PublicTextInput';
 
-storiesOf('PublicTextInput', module)
+storiesOf('components|atoms', module)
   .addDecorator(withKnobs)
-  .add('with text', () => (
+  .add('PublicTextInput', () => (
     <View style={styles.container}>
       {/* 비밀번호 성공 */}
       <PublicTextInput
