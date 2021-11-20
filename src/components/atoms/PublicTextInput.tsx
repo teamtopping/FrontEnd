@@ -1,5 +1,6 @@
-import React, {RefObject} from 'react';
+import React, {RefObject, useState} from 'react';
 import {
+  Image,
   StyleProp,
   StyleSheet,
   TextInput,
@@ -7,18 +8,47 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import {maxScale} from '~/constants/theme';
+import {colors, maxScale} from '~/constants/theme';
 
 export interface Props extends TextInputProps {
-  containerStyle?: StyleProp<ViewStyle>;
+  validation?: 'error' | 'success';
   textInputRef?: RefObject<TextInput>;
   onPressButton?: () => void;
 }
 
 const PublicTextInput = ({...props}: Props) => {
+  const [isFocused, setIsFocused] = useState(false);
+  let containerStyle: StyleProp<ViewStyle> = styles.defaultContainer;
+  let button = <></>;
+
+  if (isFocused) {
+    containerStyle = styles.focusedContainer;
+    button = (
+      <Image
+        style={styles.button}
+        source={require('@assets/input_delete.png')}
+      />
+    );
+  } else if (props.validation === 'error') {
+    containerStyle = styles.errorContainer;
+    button = (
+      <Image
+        style={styles.button}
+        source={require('@assets/input_error.png')}
+      />
+    );
+  } else if (props.validation === 'success') {
+    containerStyle = styles.successContainer;
+    button = (
+      <Image
+        style={styles.button}
+        source={require('@assets/input_success.png')}
+      />
+    );
+  }
   return (
     <>
-      <View style={[props.containerStyle, styles.container]}>
+      <View style={[styles.container, containerStyle]}>
         <TextInput
           selectionColor={'black'}
           style={styles.input}
@@ -28,9 +58,12 @@ const PublicTextInput = ({...props}: Props) => {
           autoCorrect={false}
           autoCapitalize="none"
           autoCompleteType="off"
-          placeholderTextColor={'#999999'}
+          placeholderTextColor={props.editable ? colors.GRAY04 : colors.GRAY05}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           {...props}
         />
+        {button}
       </View>
     </>
   );
@@ -43,48 +76,33 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignSelf: 'center',
-    borderWidth: 1,
-    borderRadius: 100,
+    alignItems: 'center',
+    borderBottomWidth: 1,
     width: maxScale(335),
-    height: maxScale(68),
-    paddingHorizontal: maxScale(30),
+    height: maxScale(44),
+  },
+  defaultContainer: {
+    borderColor: colors.GRAY05,
+  },
+  focusedContainer: {
+    borderColor: colors.MAIN,
+  },
+  errorContainer: {
+    borderBottomColor: colors.ERROR_ALERT,
+  },
+  successContainer: {
+    borderBottomColor: colors.SUCCESS,
   },
   input: {
-    fontWeight: 'bold',
+    padding: 0,
     textAlign: 'left',
-    color: '#FFFFFF',
-    fontSize: maxScale(18),
+    color: colors.GRAY01,
+    fontWeight: 'normal',
+    fontSize: maxScale(14),
     flexBasis: '90%',
   },
-  warningContainer: {
-    marginBottom: maxScale(13),
-    height: maxScale(18),
-    left: maxScale(25),
-  },
-  warningText: {
-    position: 'absolute',
-    fontSize: maxScale(14),
-    lineHeight: maxScale(18),
-    color: '#FF97A8',
-    marginTop: maxScale(8),
-  },
-  successText: {
-    position: 'absolute',
-    fontSize: maxScale(14),
-    lineHeight: maxScale(18),
-    color: '#B7D4FE',
-    marginTop: maxScale(8),
-  },
-  typeContainer: {
-    position: 'relative',
-    top: maxScale(23),
-  },
-  arrowImg: {
-    width: maxScale(36),
-    height: maxScale(17),
-  },
-  checkImg: {
-    width: maxScale(26),
-    height: maxScale(17),
+  button: {
+    width: maxScale(20),
+    height: maxScale(20),
   },
 });

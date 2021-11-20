@@ -4,15 +4,29 @@ import {storiesOf} from '@storybook/react-native';
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import PublicTextInput from './PublicTextInput';
+import {colors} from '~/constants/theme';
 
 storiesOf('components|atoms', module)
   .addDecorator(withKnobs)
   .add('PublicTextInput', () => (
     <View style={styles.container}>
-      {/* 비밀번호 성공 */}
       <PublicTextInput
-        secureTextEntry
-        placeholder={'비밀번호 (8자 이상)'}
+        editable={false}
+        placeholder={'DISABLED'}
+        onPressButton={action('onPressButton')}
+      />
+      <PublicTextInput
+        placeholder={'DEFAULT'}
+        onPressButton={action('onPressButton')}
+      />
+      <PublicTextInput
+        validation={'error'}
+        placeholder={'DEFAULT'}
+        onPressButton={action('onPressButton')}
+      />
+      <PublicTextInput
+        validation={'success'}
+        placeholder={'DEFAULT'}
         onPressButton={action('onPressButton')}
       />
     </View>
@@ -21,5 +35,6 @@ storiesOf('components|atoms', module)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-around',
   },
 });
