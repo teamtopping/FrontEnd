@@ -41,8 +41,8 @@ export default PublicTextInput;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
     alignSelf: 'center',
     borderBottomWidth: 1,
     width: maxScale(320),
