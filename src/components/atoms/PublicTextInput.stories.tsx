@@ -4,32 +4,45 @@ import {storiesOf} from '@storybook/react-native';
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import PublicTextInput from './PublicTextInput';
+import {STRING} from '@constants/ko';
 
 storiesOf('components|atoms', module)
   .addDecorator(withKnobs)
   .add('PublicTextInput', () => (
     <View style={styles.container}>
       <PublicTextInput
+        type={'Password'}
         secureTextEntry
         contentTitle={'비밀번호'}
         placeholder={'비밀번호를 입력해주세요'}
         onPressButton={action('onPressButton')}
+        isPreview={false}
       />
       <PublicTextInput
-        secureTextEntry
+        type={'Password'}
+        isPreview={true}
+        secureTextEntry={false}
         contentTitle={'비밀번호 확인'}
         placeholder={'비밀번호를 입력해주세요'}
         onPressButton={action('onPressButton')}
-        warningMsg={'입력하신 비밀번호가 달라요'}
       />
       <PublicTextInput
         contentTitle={'닉네임'}
         placeholder={'닉네임을 입력해주세요'}
         onPressButton={action('onPressButton')}
-        type={'Default'}
+        type={'Validity'}
         value={'닉네임 값'}
         isValid={true}
-        warningMsg={'사용 가능한 닉네임이에요'}
+        warningMsg={STRING.nickname}
+      />
+      <PublicTextInput
+        contentTitle={'닉네임'}
+        placeholder={'닉네임을 입력해주세요'}
+        onPressButton={action('onPressButton')}
+        type={'Validity'}
+        value={'닉네임 값'}
+        isValid={false}
+        warningMsg={STRING.overlap}
       />
     </View>
   ));

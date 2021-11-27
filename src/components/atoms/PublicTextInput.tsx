@@ -13,7 +13,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {IMAGES} from '~/constants/images';
 import {maxScale} from '~/constants/theme';
 
-export type PublicTextInputType = 'Default' | 'Password';
+export type PublicTextInputType = 'Validity' | 'Password';
 
 export interface Props extends TextInputProps {
   containerStyle?: StyleProp<ViewStyle>;
@@ -22,62 +22,111 @@ export interface Props extends TextInputProps {
   warningMsg?: string;
   onPressButton?: () => void;
   type?: PublicTextInputType;
+  isPreview?: boolean | undefined;
   isValid?: boolean | undefined;
-  isSuccess?: boolean;
-  onChangeValue?: (text: string) => void;
 }
 
 const PublicTextInput = ({...props}: Props) => {
-  const DeleteImg = useMemo(() => {
-    if (props.value) {
-      return IMAGES.Default;
-    } else {
-      return;
-    }
-  }, [props.value]);
-
   const TextInputButton = useMemo(() => {
-    if (props.type === 'Default') {
-      return (
-        <TouchableOpacity
-          activeOpacity={1}
-          style={styles.typeContainer}
-          onPress={props.onPressButton}>
-          <Image source={DeleteImg} style={styles.deleteImg} />
-        </TouchableOpacity>
-      );
+    if (props.type === 'Password') {
+      if (props.isPreview === false) {
+        return (
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.typeContainer}
+            onPress={props.onPressButton}>
+            <Image source={IMAGES.Preivew} style={styles.InputImg} />
+          </TouchableOpacity>
+        );
+      } else {
+        return (
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.typeContainer}
+            onPress={props.onPressButton}>
+            <Image source={IMAGES.Private} style={styles.InputImg} />
+          </TouchableOpacity>
+        );
+      }
+    } else if (props.type === 'Validity') {
+      if (props.isValid === true) {
+        return (
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.typeContainer}
+            onPress={props.onPressButton}>
+            <Image source={IMAGES.Success} style={styles.InputImg} />
+          </TouchableOpacity>
+        );
+      } else if (props.isValid === false) {
+        return (
+          <TouchableOpacity
+            activeOpacity={1}
+            style={styles.typeContainer}
+            onPress={props.onPressButton}>
+            <Image source={IMAGES.Fail} style={styles.InputImg} />
+          </TouchableOpacity>
+        );
+      }
     }
-  }, [props.type, props.onPressButton, DeleteImg]);
-
-  return (
-    <>
-      <View style={[props.containerStyle, styles.container]}>
-        <View style={styles.header}>
-          <Text style={styles.title}>{props.contentTitle}</Text>
+  }, [props.type, props.isPreview, props.onPressButton, props.isValid]);
+  if (props.type === 'Validity') {
+    return (
+      <>
+        <View
+          style={[
+            styles.container,
+            props.isValid ? {borderColor: '#4BAF69'} : {borderColor: '#FF5555'},
+          ]}>
+          <View style={styles.header}>
+            <Text style={styles.title}>{props.contentTitle}</Text>
+          </View>
+          <TextInput
+            selectionColor={'black'}
+            style={styles.input}
+            ref={props.textInputRef}
+            placeholderTextColor={'#A5A7AB'}
+            {...props}
+          />
+          {TextInputButton}
         </View>
-        <TextInput
-          selectionColor={'black'}
-          style={styles.input}
-          ref={props.textInputRef}
-          allowFontScaling={false}
-          underlineColorAndroid="transparent"
-          autoCorrect={false}
-          autoCapitalize="none"
-          autoCompleteType="off"
-          placeholderTextColor={'#A5A7AB'}
-          {...props}
-        />
-        {TextInputButton}
-      </View>
-      <View style={styles.warningContainer}>
-        {props.warningMsg && (
-          <Text style={props.isValid ? styles.successText : styles.warningText}>
-            {props.warningMsg}
-          </Text>
-        )}
-      </View>
-    </>
-  );
+        <View style={styles.warningContainer}>
+          {props.warningMsg && (
+            <Text
+              style={props.isValid ? styles.successText : styles.warningText}>
+              {props.warningMsg}
+            </Text>
+          )}
+        </View>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <View style={[styles.container]}>
+          <View style={styles.header}>
+            <Text style={styles.title}>{props.contentTitle}</Text>
+          </View>
+          <TextInput
+            selectionColor={'black'}
+            style={styles.input}
+            ref={props.textInputRef}
+            placeholderTextColor={'#A5A7AB'}
+            {...props}
+          />
+          {TextInputButton}
+        </View>
+        <View style={styles.warningContainer}>
+          {props.warningMsg && (
+            <Text
+              style={props.isValid ? styles.successText : styles.warningText}>
+              {props.warningMsg}
+            </Text>
+          )}
+        </View>
+      </>
+    );
+  }
 };
 
 export default PublicTextInput;
@@ -130,7 +179,7 @@ const styles = StyleSheet.create({
     bottom: maxScale(10),
     left: maxScale(300),
   },
-  deleteImg: {
+  InputImg: {
     width: maxScale(20),
     height: maxScale(20),
   },
