@@ -1,4 +1,4 @@
-import React, {RefObject} from 'react';
+import React, {RefObject, useMemo} from 'react';
 import {
   StyleProp,
   StyleSheet,
@@ -7,7 +7,9 @@ import {
   TextInputProps,
   View,
   ViewStyle,
+  Image,
 } from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {IMAGES} from '~/constants/images';
 import {maxScale} from '~/constants/theme';
 
@@ -15,16 +17,38 @@ export type PublicTextInputType = 'Default' | 'Password';
 
 export interface Props extends TextInputProps {
   containerStyle?: StyleProp<ViewStyle>;
-  textInputRef?: RefObject<TextInput>;
-  onPressButton?: () => void;
-  isValid?: boolean | undefined;
-  warningMsg?: string;
-  isSuccess?: boolean;
-  type?: PublicTextInputType;
   contentTitle?: string;
+  textInputRef?: RefObject<TextInput>;
+  warningMsg?: string;
+  onPressButton?: () => void;
+  type?: PublicTextInputType;
+  isValid?: boolean | undefined;
+  isSuccess?: boolean;
+  onChangeValue?: (text: string) => void;
 }
 
 const PublicTextInput = ({...props}: Props) => {
+  const DeleteImg = useMemo(() => {
+    if (props.value) {
+      return IMAGES.Default;
+    } else {
+      return;
+    }
+  }, [props.value]);
+
+  const TextInputButton = useMemo(() => {
+    if (props.type === 'Default') {
+      return (
+        <TouchableOpacity
+          activeOpacity={1}
+          style={styles.typeContainer}
+          onPress={props.onPressButton}>
+          <Image source={DeleteImg} style={styles.deleteImg} />
+        </TouchableOpacity>
+      );
+    }
+  }, [props.type, props.onPressButton, DeleteImg]);
+
   return (
     <>
       <View style={[props.containerStyle, styles.container]}>
@@ -43,7 +67,7 @@ const PublicTextInput = ({...props}: Props) => {
           placeholderTextColor={'#A5A7AB'}
           {...props}
         />
-        {/* btn */}
+        {TextInputButton}
       </View>
       <View style={styles.warningContainer}>
         {props.warningMsg && (
@@ -60,7 +84,8 @@ export default PublicTextInput;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
     alignSelf: 'center',
     borderBottomWidth: 1,
     borderColor: '#3C4650',
@@ -70,6 +95,7 @@ const styles = StyleSheet.create({
   header: {
     width: maxScale(320),
     height: maxScale(16),
+    marginBottom: maxScale(20),
   },
   title: {
     fontSize: maxScale(16),
@@ -87,7 +113,7 @@ const styles = StyleSheet.create({
   },
   warningText: {
     position: 'absolute',
-    fontSize: maxScale(14),
+    fontSize: maxScale(12),
     lineHeight: maxScale(18),
     color: '#FF5555',
     marginTop: maxScale(8),
@@ -98,5 +124,14 @@ const styles = StyleSheet.create({
     lineHeight: maxScale(17),
     color: '#4BAF69',
     marginTop: maxScale(8),
+  },
+  typeContainer: {
+    position: 'absolute',
+    bottom: maxScale(10),
+    left: maxScale(300),
+  },
+  deleteImg: {
+    width: maxScale(20),
+    height: maxScale(20),
   },
 });

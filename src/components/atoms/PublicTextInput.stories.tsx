@@ -26,7 +26,10 @@ storiesOf('components|atoms', module)
         contentTitle={'닉네임'}
         placeholder={'닉네임을 입력해주세요'}
         onPressButton={action('onPressButton')}
-        // 유효성 검사 통과 경우
+        type={'Default'}
+        value={'닉네임 값'}
+        isValid={true}
+        warningMsg={'사용 가능한 닉네임이에요'}
       />
     </View>
   ));
