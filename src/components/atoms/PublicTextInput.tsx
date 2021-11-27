@@ -2,23 +2,35 @@ import React, {RefObject} from 'react';
 import {
   StyleProp,
   StyleSheet,
+  Text,
   TextInput,
   TextInputProps,
   View,
   ViewStyle,
 } from 'react-native';
+import {IMAGES} from '~/constants/images';
 import {maxScale} from '~/constants/theme';
+
+export type PublicTextInputType = 'Default' | 'Password';
 
 export interface Props extends TextInputProps {
   containerStyle?: StyleProp<ViewStyle>;
   textInputRef?: RefObject<TextInput>;
   onPressButton?: () => void;
+  isValid?: boolean | undefined;
+  warningMsg?: string;
+  isSuccess?: boolean;
+  type?: PublicTextInputType;
+  contentTitle?: string;
 }
 
 const PublicTextInput = ({...props}: Props) => {
   return (
     <>
       <View style={[props.containerStyle, styles.container]}>
+        <View style={styles.header}>
+          <Text style={styles.title}>{props.contentTitle}</Text>
+        </View>
         <TextInput
           selectionColor={'black'}
           style={styles.input}
@@ -28,9 +40,17 @@ const PublicTextInput = ({...props}: Props) => {
           autoCorrect={false}
           autoCapitalize="none"
           autoCompleteType="off"
-          placeholderTextColor={'#999999'}
+          placeholderTextColor={'#A5A7AB'}
           {...props}
         />
+        {/* btn */}
+      </View>
+      <View style={styles.warningContainer}>
+        {props.warningMsg && (
+          <Text style={props.isValid ? styles.successText : styles.warningText}>
+            {props.warningMsg}
+          </Text>
+        )}
       </View>
     </>
   );
@@ -40,51 +60,43 @@ export default PublicTextInput;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
     justifyContent: 'space-between',
     alignSelf: 'center',
-    borderWidth: 1,
-    borderRadius: 100,
-    width: maxScale(335),
-    height: maxScale(68),
-    paddingHorizontal: maxScale(30),
+    borderBottomWidth: 1,
+    borderColor: '#3C4650',
+    width: maxScale(320),
+    height: maxScale(66),
+  },
+  header: {
+    width: maxScale(320),
+    height: maxScale(16),
+  },
+  title: {
+    fontSize: maxScale(16),
   },
   input: {
-    fontWeight: 'bold',
     textAlign: 'left',
-    color: '#FFFFFF',
-    fontSize: maxScale(18),
-    flexBasis: '90%',
+    color: '#212224',
+    fontSize: maxScale(14),
+    marginBottom: maxScale(10),
   },
   warningContainer: {
     marginBottom: maxScale(13),
     height: maxScale(18),
-    left: maxScale(25),
+    left: maxScale(15),
   },
   warningText: {
     position: 'absolute',
     fontSize: maxScale(14),
     lineHeight: maxScale(18),
-    color: '#FF97A8',
+    color: '#FF5555',
     marginTop: maxScale(8),
   },
   successText: {
     position: 'absolute',
-    fontSize: maxScale(14),
-    lineHeight: maxScale(18),
-    color: '#B7D4FE',
+    fontSize: maxScale(12),
+    lineHeight: maxScale(17),
+    color: '#4BAF69',
     marginTop: maxScale(8),
-  },
-  typeContainer: {
-    position: 'relative',
-    top: maxScale(23),
-  },
-  arrowImg: {
-    width: maxScale(36),
-    height: maxScale(17),
-  },
-  checkImg: {
-    width: maxScale(26),
-    height: maxScale(17),
   },
 });

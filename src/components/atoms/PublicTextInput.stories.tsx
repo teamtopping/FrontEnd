@@ -9,11 +9,24 @@ storiesOf('components|atoms', module)
   .addDecorator(withKnobs)
   .add('PublicTextInput', () => (
     <View style={styles.container}>
-      {/* 비밀번호 성공 */}
       <PublicTextInput
         secureTextEntry
-        placeholder={'비밀번호 (8자 이상)'}
+        contentTitle={'비밀번호'}
+        placeholder={'비밀번호를 입력해주세요'}
         onPressButton={action('onPressButton')}
+      />
+      <PublicTextInput
+        secureTextEntry
+        contentTitle={'비밀번호 확인'}
+        placeholder={'비밀번호를 입력해주세요'}
+        onPressButton={action('onPressButton')}
+        warningMsg={'입력하신 비밀번호가 달라요'}
+      />
+      <PublicTextInput
+        contentTitle={'닉네임'}
+        placeholder={'닉네임을 입력해주세요'}
+        onPressButton={action('onPressButton')}
+        // 유효성 검사 통과 경우
       />
     </View>
   ));

@@ -1,5 +1,7 @@
 export const IMAGES = {
-  /** background */
-
-  MOA: require('@assets/a.png'),
+  Default: require('@assets/delete.png'),
+  Preivew: require('@assets/preview.png'),
+  Private: require('@assets/private.png'),
+  Fail: require('@assets/fail.png'),
+  Success: require('@assets/success.png'),
 };
