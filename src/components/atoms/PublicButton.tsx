@@ -10,7 +10,7 @@ import {
 import {colors, maxScale} from '~/constants/theme';
 
 export interface Props {
-  containerStyle?: ViewStyle;
+  wrapperStyle?: ViewStyle;
   buttonStyle?: ViewStyle;
   textStyle?: TextStyle;
   text: string;
@@ -19,25 +19,27 @@ export interface Props {
 }
 
 const PublicButton = ({disabled = false, ...props}: Props) => {
-  const buttonStyle = useMemo((): ViewStyle => {
-    return {
+  const wrapperStyle = useMemo((): ViewStyle => {
+    return disabled ? {} : {...props.wrapperStyle};
+  }, [disabled, props.wrapperStyle]);
+  const buttonStyle = useMemo(
+    (): ViewStyle => ({
       ...props.buttonStyle,
       opacity: disabled ? 1 : undefined,
-      backgroundColor: disabled
-        ? colors.GRAY05
-        : props.buttonStyle.backgroundColor,
-    };
-  }, [disabled, props.buttonStyle]);
-
-  const textStyle = useMemo((): TextStyle => {
-    return {
+      backgroundColor: disabled ? colors.GRAY05 : colors.MAIN,
+    }),
+    [disabled, props.buttonStyle],
+  );
+  const textStyle = useMemo(
+    (): TextStyle => ({
       ...props.textStyle,
-      color: disabled ? colors.GRAY04 : props.textStyle.color,
-    };
-  }, [disabled, props.textStyle]);
+      color: disabled ? colors.GRAY04 : colors.FFF,
+    }),
+    [disabled, props.textStyle],
+  );
   return (
-    <>
-      <View style={[styles.container, props.containerStyle]}>
+    <View style={styles.container}>
+      <View style={[wrapperStyle]}>
         <TouchableOpacity
           activeOpacity={0.7}
           style={[buttonStyle, styles.button]}
@@ -45,18 +47,21 @@ const PublicButton = ({disabled = false, ...props}: Props) => {
           <Text style={[textStyle, styles.text]}>{props.text}</Text>
         </TouchableOpacity>
       </View>
-    </>
+    </View>
   );
 };
 
 export default PublicButton;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    alignItems: 'center',
+  },
   button: {
-    borderRadius: 8,
+    borderRadius: 12,
     alignSelf: 'center',
     justifyContent: 'center',
+    height: maxScale(52),
   },
   text: {
     alignSelf: 'center',
