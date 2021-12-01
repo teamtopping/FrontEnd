@@ -5,33 +5,18 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {IMAGES} from '~/constants/images';
 import {STRING} from '~/constants/ko';
-import PublicTextInput from './PublicTextInput';
+import RegisterInput from './RegisterInput';
 
-storiesOf('components|atoms', module)
+storiesOf('components|molecules', module)
   .addDecorator(withKnobs)
-  .add('PublicTextInput', () => (
+  .add('RegisterInput', () => (
     <View style={styles.container}>
-      <PublicTextInput
+      <RegisterInput
         secureTextEntry
         placeholder={STRING.defaultPassInput}
         onPressIcon={action('onPressIcon')}
         icon={IMAGES.Preivew}
         onChangeText={action('이걸로 감시')}
-      />
-      <PublicTextInput
-        placeholder={STRING.checkPass}
-        onPressIcon={action('onPressIcon')}
-        icon={IMAGES.Private}
-      />
-      <PublicTextInput
-        placeholder={STRING.checkPass}
-        onPressIcon={action('onPressIcon')}
-        icon={IMAGES.Success}
-      />
-      <PublicTextInput
-        placeholder={STRING.checkPass}
-        onPressIcon={action('onPressIcon')}
-        icon={IMAGES.Fail}
       />
     </View>
   ));

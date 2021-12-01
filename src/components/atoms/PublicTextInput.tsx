@@ -2,20 +2,17 @@ import React, {RefObject} from 'react';
 import {
   Image,
   ImageSourcePropType,
-  StyleProp,
   StyleSheet,
   TextInput,
   TextInputProps,
   View,
-  ViewStyle,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import {maxScale} from '~/constants/theme';
 import {colors} from '~/constants/theme';
 
-export interface Props extends TextInputProps {
-  containerStyle?: StyleProp<ViewStyle>;
+interface Props extends TextInputProps {
   textInputRef?: RefObject<TextInput>;
   icon?: ImageSourcePropType;
   onChangeText?: () => void;
@@ -33,7 +30,7 @@ const PublicTextInput = ({...props}: Props) => {
         onChangeText={props.onChangeText}
         {...props}
       />
-      <View style={styles.imageDiv}>
+      <View style={styles.inputImg}>
         <TouchableOpacity onPress={props.onPressIcon} activeOpacity={0.6}>
           <Image source={props.icon} />
         </TouchableOpacity>
@@ -58,7 +55,7 @@ const styles = StyleSheet.create({
     color: colors.GRAY01,
     fontSize: maxScale(18),
   },
-  imageDiv: {
+  inputImg: {
     width: maxScale(20),
     height: maxScale(20),
   },
