@@ -1,5 +1,7 @@
 export const STRING = {
   // password
+  defaultPassInput: '비밀번호를 입력해주세요',
+  checkPass: '비밀번호 다시 한번 입력해주세요',
   morePass: '비밀번호를 6자 이상 입력해주세요.',
   lessPass: '비밀번호를 12자 이하로 입력해주세요.',
   PassIncludeNum: '비밀번호에 숫자를 포함해주세요.',

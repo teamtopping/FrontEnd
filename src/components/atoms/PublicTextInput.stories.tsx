@@ -3,17 +3,25 @@ import {withKnobs} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react-native';
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
+import {IMAGES} from '~/constants/images';
+import {STRING} from '~/constants/ko';
 import PublicTextInput from './PublicTextInput';
 
 storiesOf('components|atoms', module)
   .addDecorator(withKnobs)
   .add('PublicTextInput', () => (
     <View style={styles.container}>
-      {/* 비밀번호 성공 */}
       <PublicTextInput
         secureTextEntry
-        placeholder={'비밀번호 (8자 이상)'}
-        onPressButton={action('onPressButton')}
+        placeholder={STRING.defaultPassInput}
+        onPressIcon={action('onPressIcon')}
+        icon={IMAGES.Preivew}
+        onChangeText={action('이걸로 감시')}
+      />
+      <PublicTextInput
+        placeholder={STRING.checkPass}
+        onPressIcon={action('onPressIcon')}
+        icon={IMAGES.Private}
       />
     </View>
   ));
