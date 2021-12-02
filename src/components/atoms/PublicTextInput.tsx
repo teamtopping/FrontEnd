@@ -1,25 +1,20 @@
 import React, {RefObject, useState} from 'react';
-import {
-  Image,
-  ImageSourcePropType,
-  StyleSheet,
-  TextInput,
-  TextInputProps,
-  View,
-} from 'react-native';
+import {Image, StyleSheet, TextInput, TextInputProps, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {IMAGES} from '~/constants/images';
 
 import {maxScale} from '~/constants/theme';
 import {colors} from '~/constants/theme';
 
 interface Props extends TextInputProps {
   textInputRef?: RefObject<TextInput>;
-  icon?: ImageSourcePropType;
+  onChange?: () => void;
   onPressIcon?: () => void;
 }
 
 const PublicTextInput = ({...props}: Props) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
+  const [value, setValue] = useState('');
   return (
     <View
       style={[
@@ -31,13 +26,15 @@ const PublicTextInput = ({...props}: Props) => {
         style={styles.input}
         ref={props.textInputRef}
         placeholderTextColor={colors.GRAY04}
+        value={value}
+        onChangeText={text => setValue(text)}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         {...props}
       />
       <View style={styles.inputImg}>
         <TouchableOpacity onPress={props.onPressIcon} activeOpacity={0.6}>
-          <Image source={props.icon} />
+          <Image source={value ? IMAGES.Delete : null} />
         </TouchableOpacity>
       </View>
     </View>

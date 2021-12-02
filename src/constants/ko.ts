@@ -1,4 +1,6 @@
 export const STRING = {
+  // email
+  fillEmail: '이메일을 입력해주세요',
   // password
   defaultPassInput: '비밀번호를 입력해주세요',
   checkPass: '비밀번호 다시 한번 입력해주세요',

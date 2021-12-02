@@ -3,7 +3,6 @@ import {withKnobs} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react-native';
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {IMAGES} from '~/constants/images';
 import {STRING} from '~/constants/ko';
 import PublicTextInput from './PublicTextInput';
 
@@ -12,15 +11,8 @@ storiesOf('components|atoms', module)
   .add('PublicTextInput', () => (
     <View style={styles.container}>
       <PublicTextInput
-        secureTextEntry
-        placeholder={STRING.defaultPassInput}
+        placeholder={STRING.fillEmail}
         onPressIcon={action('onPressIcon')}
-        icon={IMAGES.Preivew}
-      />
-      <PublicTextInput
-        placeholder={STRING.checkPass}
-        onPressIcon={action('onPressIcon')}
-        icon={IMAGES.Private}
       />
     </View>
   ));
