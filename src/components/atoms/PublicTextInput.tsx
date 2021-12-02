@@ -1,4 +1,4 @@
-import React, {RefObject} from 'react';
+import React, {RefObject, useState} from 'react';
 import {
   Image,
   ImageSourcePropType,
@@ -15,19 +15,24 @@ import {colors} from '~/constants/theme';
 interface Props extends TextInputProps {
   textInputRef?: RefObject<TextInput>;
   icon?: ImageSourcePropType;
-  onChangeText?: () => void;
   onPressIcon?: () => void;
 }
 
 const PublicTextInput = ({...props}: Props) => {
+  const [isFocus, setIsFocus] = useState<boolean>(false);
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {borderBottomColor: isFocus ? colors.GRAY01 : colors.GRAY05},
+      ]}>
       <TextInput
         selectionColor={'black'}
         style={styles.input}
         ref={props.textInputRef}
         placeholderTextColor={colors.GRAY04}
-        onChangeText={props.onChangeText}
+        onFocus={() => setIsFocus(true)}
+        onBlur={() => setIsFocus(false)}
         {...props}
       />
       <View style={styles.inputImg}>
@@ -46,8 +51,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignSelf: 'center',
-    borderBottomWidth: 1,
     width: '90%',
+    borderBottomColor: colors.GRAY05,
+    borderBottomWidth: 1,
   },
   input: {
     flex: 1,

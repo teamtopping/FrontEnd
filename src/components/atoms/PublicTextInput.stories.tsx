@@ -16,22 +16,11 @@ storiesOf('components|atoms', module)
         placeholder={STRING.defaultPassInput}
         onPressIcon={action('onPressIcon')}
         icon={IMAGES.Preivew}
-        onChangeText={action('이걸로 감시')}
       />
       <PublicTextInput
         placeholder={STRING.checkPass}
         onPressIcon={action('onPressIcon')}
         icon={IMAGES.Private}
-      />
-      <PublicTextInput
-        placeholder={STRING.checkPass}
-        onPressIcon={action('onPressIcon')}
-        icon={IMAGES.Success}
-      />
-      <PublicTextInput
-        placeholder={STRING.checkPass}
-        onPressIcon={action('onPressIcon')}
-        icon={IMAGES.Fail}
       />
     </View>
   ));
