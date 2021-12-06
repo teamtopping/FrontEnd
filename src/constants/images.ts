@@ -1,7 +1,7 @@
 export const IMAGES = {
-  Delete: require('@assets/delete.png'),
-  Preivew: require('@assets/preview.png'),
-  Private: require('@assets/private.png'),
-  Fail: require('@assets/fail.png'),
-  Success: require('@assets/success.png'),
+  delete: require('@assets/delete.png'),
+  preivew: require('@assets/preview.png'),
+  private: require('@assets/private.png'),
+  fail: require('@assets/fail.png'),
+  success: require('@assets/success.png'),
 };

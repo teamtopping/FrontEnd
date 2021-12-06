@@ -1,4 +1,4 @@
-import React, {RefObject, useState} from 'react';
+import React, {RefObject} from 'react';
 import {Image, StyleSheet, TextInput, TextInputProps, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {IMAGES} from '~/constants/images';
@@ -8,33 +8,28 @@ import {colors} from '~/constants/theme';
 
 interface Props extends TextInputProps {
   textInputRef?: RefObject<TextInput>;
-  onChange?: () => void;
+  value: string;
+  type: string;
+  onChangeText?: (text: string) => void;
   onPressIcon?: () => void;
 }
 
 const PublicTextInput = ({...props}: Props) => {
-  const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [value, setValue] = useState('');
   return (
-    <View
-      style={[
-        styles.container,
-        {borderBottomColor: isFocus ? colors.GRAY01 : colors.GRAY05},
-      ]}>
+    <View style={styles.container}>
       <TextInput
         selectionColor={'black'}
         style={styles.input}
         ref={props.textInputRef}
         placeholderTextColor={colors.GRAY04}
-        value={value}
-        onChangeText={text => setValue(text)}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
+        value={props.value}
+        type={props.type}
+        onChangeText={props.onChangeText}
         {...props}
       />
       <View style={styles.inputImg}>
         <TouchableOpacity onPress={props.onPressIcon} activeOpacity={0.6}>
-          <Image source={value ? IMAGES.Delete : null} />
+          <Image source={props.value ? IMAGES.delete : null} />
         </TouchableOpacity>
       </View>
     </View>
@@ -63,3 +58,5 @@ const styles = StyleSheet.create({
     height: maxScale(20),
   },
 });
+
+// TODO:: DELETE 아이콘 누르면 밸류 삭제

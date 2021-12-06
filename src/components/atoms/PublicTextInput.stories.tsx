@@ -13,6 +13,8 @@ storiesOf('components|atoms', module)
       <PublicTextInput
         placeholder={STRING.fillEmail}
         onPressIcon={action('onPressIcon')}
+        value={'value가 있을 때'}
+        type={'Default'}
       />
     </View>
   ));
