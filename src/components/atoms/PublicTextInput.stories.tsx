@@ -10,11 +10,7 @@ storiesOf('components|atoms', module)
   .addDecorator(withKnobs)
   .add('PublicTextInput', () => (
     <View style={styles.container}>
-      <PublicTextInput
-        placeholder={STRING.fillEmail}
-        onPressIcon={action('onPressIcon')}
-        type={'Default'}
-      />
+      <PublicTextInput placeholder={STRING.fillEmail} type={'default'} />
     </View>
   ));
 

@@ -6,11 +6,14 @@ import {IMAGES} from '~/constants/images';
 import {maxScale} from '~/constants/theme';
 import {colors} from '~/constants/theme';
 
+export type InputType = 'default' | 'password';
+
 interface Props extends TextInputProps {
   textInputRef?: RefObject<TextInput>;
-  type: string;
+  type?: InputType;
+  isValid?: boolean;
+  isPrivate?: boolean;
   onChangeText?: (text: string) => void;
-  onPressIcon?: () => void;
 }
 
 const PublicTextInput = ({...props}: Props) => {
@@ -19,10 +22,10 @@ const PublicTextInput = ({...props}: Props) => {
     <View style={styles.container}>
       <TextInput
         selectionColor={'black'}
+        type={props.type}
         style={styles.input}
         placeholderTextColor={colors.GRAY04}
         ref={props.textInputRef}
-        type={props.type}
         value={value}
         onChangeText={text => setValue(text)}
         {...props}
@@ -43,7 +46,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignSelf: 'center',
-    width: '90%',
     borderBottomColor: colors.GRAY05,
     borderBottomWidth: 1,
   },
