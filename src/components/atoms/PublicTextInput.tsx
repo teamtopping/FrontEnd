@@ -28,6 +28,8 @@ const PublicTextInput = ({...props}: Props) => {
         ref={props.textInputRef}
         value={value}
         onChangeText={text => setValue(text)}
+        isValid={props.isValid}
+        isPrivate={props.isPrivate}
         {...props}
       />
       <View style={styles.inputImg}>
