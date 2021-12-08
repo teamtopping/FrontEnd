@@ -6,22 +6,17 @@ import {
   TouchableOpacity,
   View,
   ViewStyle,
+  ButtonProps,
 } from 'react-native';
 import {colors, maxScale} from '~/constants/theme';
 
-export interface Props {
-  wrapperStyle?: ViewStyle;
-  buttonStyle?: ViewStyle;
+export interface Props extends ButtonProps {
+  buttonStyle: ViewStyle;
   textStyle?: TextStyle;
-  text: string;
   disabled?: boolean;
-  onPressButton: () => void;
 }
 
 const PublicButton = ({disabled = false, ...props}: Props) => {
-  const wrapperStyle = useMemo((): ViewStyle => {
-    return disabled ? {} : {...props.wrapperStyle};
-  }, [disabled, props.wrapperStyle]);
   const buttonStyle = useMemo(
     (): ViewStyle => ({
       ...props.buttonStyle,
@@ -39,14 +34,12 @@ const PublicButton = ({disabled = false, ...props}: Props) => {
   );
   return (
     <View style={styles.container}>
-      <View style={[wrapperStyle]}>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={[buttonStyle, styles.button]}
-          disabled={disabled}>
-          <Text style={[textStyle, styles.text]}>{props.text}</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        style={[buttonStyle, styles.button]}
+        disabled={disabled}>
+        <Text style={[textStyle, styles.text]}>{props.title}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
