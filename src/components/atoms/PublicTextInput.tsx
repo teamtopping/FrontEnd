@@ -1,38 +1,43 @@
 import React, {RefObject} from 'react';
 import {
-  StyleProp,
+  Image,
+  ImageSourcePropType,
   StyleSheet,
   TextInput,
   TextInputProps,
   View,
-  ViewStyle,
 } from 'react-native';
-import {maxScale} from '~/constants/theme';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-export interface Props extends TextInputProps {
-  containerStyle?: StyleProp<ViewStyle>;
+import {maxScale} from '~/constants/theme';
+import {colors} from '~/constants/theme';
+
+// Export for RegisterInput
+export interface PublicTextInputProps extends TextInputProps {
   textInputRef?: RefObject<TextInput>;
-  onPressButton?: () => void;
+  img?: ImageSourcePropType;
+  onChangeText?: (text: string) => void;
+  onPressIcon?: () => void;
 }
 
-const PublicTextInput = ({...props}: Props) => {
+const PublicTextInput = ({...props}: PublicTextInputProps) => {
   return (
-    <>
-      <View style={[props.containerStyle, styles.container]}>
-        <TextInput
-          selectionColor={'black'}
-          style={styles.input}
-          ref={props.textInputRef}
-          allowFontScaling={false}
-          underlineColorAndroid="transparent"
-          autoCorrect={false}
-          autoCapitalize="none"
-          autoCompleteType="off"
-          placeholderTextColor={'#999999'}
-          {...props}
-        />
+    <View style={styles.container}>
+      <TextInput
+        selectionColor={'black'}
+        style={styles.input}
+        placeholderTextColor={colors.GRAY04}
+        ref={props.textInputRef}
+        onChangeText={props.onChangeText}
+        {...props}
+      />
+      {/* pressable icon */}
+      <View style={styles.inputImg}>
+        <TouchableOpacity onPress={props.onPressIcon} activeOpacity={0.6}>
+          <Image source={props.img} />
+        </TouchableOpacity>
       </View>
-    </>
+    </View>
   );
 };
 
@@ -41,50 +46,18 @@ export default PublicTextInput;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignSelf: 'center',
-    borderWidth: 1,
-    borderRadius: 100,
-    width: maxScale(335),
-    height: maxScale(68),
-    paddingHorizontal: maxScale(30),
+    justifyContent: 'flex-end',
+    borderBottomColor: colors.GRAY05,
+    borderBottomWidth: 1,
   },
   input: {
-    fontWeight: 'bold',
-    textAlign: 'left',
-    color: '#FFFFFF',
+    flex: 1,
+    paddingBottom: maxScale(10),
+    color: colors.GRAY01,
     fontSize: maxScale(18),
-    flexBasis: '90%',
   },
-  warningContainer: {
-    marginBottom: maxScale(13),
-    height: maxScale(18),
-    left: maxScale(25),
-  },
-  warningText: {
-    position: 'absolute',
-    fontSize: maxScale(14),
-    lineHeight: maxScale(18),
-    color: '#FF97A8',
-    marginTop: maxScale(8),
-  },
-  successText: {
-    position: 'absolute',
-    fontSize: maxScale(14),
-    lineHeight: maxScale(18),
-    color: '#B7D4FE',
-    marginTop: maxScale(8),
-  },
-  typeContainer: {
-    position: 'relative',
-    top: maxScale(23),
-  },
-  arrowImg: {
-    width: maxScale(36),
-    height: maxScale(17),
-  },
-  checkImg: {
-    width: maxScale(26),
-    height: maxScale(17),
+  inputImg: {
+    width: maxScale(20),
+    height: maxScale(20),
   },
 });

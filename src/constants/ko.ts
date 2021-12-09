@@ -1,3 +1,18 @@
 export const STRING = {
-  a: 'text',
+  // email
+  fillEmail: '이메일을 입력해주세요',
+  // password
+  defaultPwdInput: '비밀번호를 입력해주세요',
+  checkPwd: '비밀번호 다시 한번 입력해주세요',
+  morePwd: '비밀번호를 6자 이상 입력해주세요.',
+  lessPwd: '비밀번호를 12자 이하로 입력해주세요.',
+  pwdIncludeNum: '비밀번호에 숫자를 포함해주세요.',
+  pwdIncludeEng: '비밀번호에 대소문자 구분없이 영문을 포함해주세요.',
+  pwdIncludeSpec: '비밀번호에 특수문자를 포함해주세요.',
+  notMatchPwd: '입력하신 비밀번호가 달라요',
+  // Nickname
+  enableNick: '사용 가능한 닉네임이에요',
+  overlapNick: '현재 이미 다른 사람이 사용중인 닉네임이에요',
+  slangNick:
+    '유저닉네임에 비속어/욕설 들어갔을때: 닉네임에 사용이 제한된 단어입니다. 다른 닉네임을 입력해주세요.',
 };
