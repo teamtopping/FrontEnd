@@ -1,4 +1,3 @@
-import {action} from '@storybook/addon-actions';
 import {withKnobs} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react-native';
 import React from 'react';
@@ -10,7 +9,7 @@ storiesOf('components|atoms', module)
   .addDecorator(withKnobs)
   .add('PublicTextInput', () => (
     <View style={styles.container}>
-      <PublicTextInput placeholder={STRING.fillEmail} type={'default'} />
+      <PublicTextInput placeholder={STRING.fillEmail} />
     </View>
   ));
 
