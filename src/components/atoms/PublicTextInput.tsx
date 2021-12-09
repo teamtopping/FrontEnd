@@ -1,19 +1,26 @@
-import React, {RefObject, useState} from 'react';
-import {Image, StyleSheet, TextInput, TextInputProps, View} from 'react-native';
+import React, {RefObject} from 'react';
+import {
+  Image,
+  ImageSourcePropType,
+  StyleSheet,
+  TextInput,
+  TextInputProps,
+  View,
+} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-import {IMAGES} from '~/constants/images';
 import {maxScale} from '~/constants/theme';
 import {colors} from '~/constants/theme';
 
 // Export for RegisterInput
 export interface PublicTextInputProps extends TextInputProps {
   textInputRef?: RefObject<TextInput>;
+  img?: ImageSourcePropType;
   onChangeText?: (text: string) => void;
+  onPressIcon?: () => void;
 }
 
 const PublicTextInput = ({...props}: PublicTextInputProps) => {
-  const [value, setValue] = useState('');
   return (
     <View style={styles.container}>
       <TextInput
@@ -21,14 +28,13 @@ const PublicTextInput = ({...props}: PublicTextInputProps) => {
         style={styles.input}
         placeholderTextColor={colors.GRAY04}
         ref={props.textInputRef}
-        value={value}
-        onChangeText={text => setValue(text)}
+        onChangeText={props.onChangeText}
         {...props}
       />
       {/* pressable icon */}
       <View style={styles.inputImg}>
-        <TouchableOpacity onPress={() => setValue('')} activeOpacity={0.6}>
-          <Image source={value ? IMAGES.delete : null} />
+        <TouchableOpacity onPress={props.onPressIcon} activeOpacity={0.6}>
+          <Image source={props.img} />
         </TouchableOpacity>
       </View>
     </View>
