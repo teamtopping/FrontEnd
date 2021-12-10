@@ -23,7 +23,6 @@ storiesOf('components|molecules', module)
         type={'password'}
         isValid={false}
         value={'유효하지 않은 비밀번호'}
-        isPrivate={true}
       />
       <RegisterInput
         title={'비밀번호'}
@@ -31,7 +30,6 @@ storiesOf('components|molecules', module)
         type={'password'}
         isValid={false}
         value={'유효하지 않은 비밀번호'}
-        isPrivate={false}
       />
     </View>
   ));

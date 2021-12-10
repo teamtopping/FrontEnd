@@ -13,13 +13,14 @@ interface Props extends PublicTextInputProps {
   title?: string;
   returnMsg?: string;
   isValid?: boolean;
-  isPrivate?: boolean;
 }
 
 const RegisterInput = ({...props}: Props) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
+  const [isPrivate, setPrivate] = useState<boolean>(true);
   return (
     <View style={styles.container}>
+      {/* input title */}
       <View style={styles.header}>
         <Text style={styles.title}>{props.title}</Text>
       </View>
@@ -31,10 +32,21 @@ const RegisterInput = ({...props}: Props) => {
         <PublicTextInput
           onFocus={() => setIsFocus(true)}
           onBlur={() => setIsFocus(false)}
-          img={props.type === 'default' && props.value ? IMAGES.delete : null}>
+          img={
+            props.type === 'password' && isPrivate
+              ? IMAGES.preivew
+              : IMAGES.private
+          }
+          secureTextEntry={
+            props.type === 'password' && isPrivate ? true : false
+          }
+          onPressIcon={() => {
+            isPrivate ? setPrivate(false) : setPrivate(true);
+          }}>
           {props.value}
         </PublicTextInput>
       </View>
+      {/* returns */}
       <View style={styles.returnZone}>
         <Text
           style={[
@@ -69,6 +81,7 @@ const styles = StyleSheet.create({
     marginTop: maxScale(8),
   },
   returnMsg: {
+    color: colors.GRAY01,
     fontSize: maxScale(12),
   },
 });
