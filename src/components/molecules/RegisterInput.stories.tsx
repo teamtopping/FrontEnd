@@ -12,24 +12,16 @@ storiesOf('components|molecules', module)
     <View style={styles.container}>
       <RegisterInput
         title={'이메일'}
-        returnMsg={STRING.enableNick}
         type={'default'}
-        isValid={true}
-        value={'유효한 이메일'}
+        placeholder={STRING.fillEmail}
+        returnMsg={STRING.enableNick}
+        value={'?'}
       />
       <RegisterInput
         title={'비밀번호'}
-        returnMsg={STRING.notMatchPwd}
         type={'password'}
-        isValid={false}
-        value={'유효하지 않은 비밀번호'}
-      />
-      <RegisterInput
-        title={'비밀번호'}
+        placeholder={STRING.defaultPwdInput}
         returnMsg={STRING.notMatchPwd}
-        type={'password'}
-        isValid={false}
-        value={'유효하지 않은 비밀번호'}
       />
     </View>
   ));

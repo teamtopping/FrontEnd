@@ -1,26 +1,24 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 
-import {colors, maxScale} from '~/constants/theme';
 import PublicTextInput, {
   PublicTextInputProps,
 } from '@components/atoms/PublicTextInput';
+import {colors, maxScale} from '~/constants/theme';
 import {IMAGES} from '~/constants/images';
 
-type RegisterInputType = 'default' | 'password';
-interface Props extends PublicTextInputProps {
-  type?: RegisterInputType;
+type InputType = 'default' | 'password';
+export interface RegisterInputProps extends PublicTextInputProps {
   title?: string;
+  type?: InputType;
   returnMsg?: string;
-  isValid?: boolean;
 }
 
-const RegisterInput = ({...props}: Props) => {
+const RegisterInput = ({...props}: RegisterInputProps) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [isPrivate, setPrivate] = useState<boolean>(true);
   return (
     <View style={styles.container}>
-      {/* input title */}
       <View style={styles.header}>
         <Text style={styles.title}>{props.title}</Text>
       </View>
@@ -29,32 +27,28 @@ const RegisterInput = ({...props}: Props) => {
           styles.input,
           {borderBottomColor: isFocus ? colors.GRAY01 : colors.GRAY05},
         ]}>
-        <PublicTextInput
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          img={
-            props.type === 'password' && isPrivate
-              ? IMAGES.preivew
-              : IMAGES.private
-          }
-          secureTextEntry={
-            props.type === 'password' && isPrivate ? true : false
-          }
-          onPressIcon={() => {
-            isPrivate ? setPrivate(false) : setPrivate(true);
-          }}>
-          {props.value}
-        </PublicTextInput>
+        {props.type === 'password' ? (
+          <PublicTextInput
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
+            secureTextEntry={isPrivate ? true : false}
+            img={isPrivate ? IMAGES.preivew : IMAGES.private}
+            onPressIcon={() => {
+              isPrivate ? setPrivate(false) : setPrivate(true);
+            }}>
+            {props.value}
+          </PublicTextInput>
+        ) : (
+          <PublicTextInput
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
+            img={props.value ? IMAGES.delete : null}>
+            {props.value}
+          </PublicTextInput>
+        )}
       </View>
-      {/* returns */}
       <View style={styles.returnZone}>
-        <Text
-          style={[
-            styles.returnMsg,
-            {color: props.isValid ? colors.SUCCESS : colors.ERROR_ALERT},
-          ]}>
-          {props.returnMsg}
-        </Text>
+        <Text style={[styles.returnMsg]}>{props.returnMsg}</Text>
       </View>
     </View>
   );
@@ -81,7 +75,7 @@ const styles = StyleSheet.create({
     marginTop: maxScale(8),
   },
   returnMsg: {
-    color: colors.GRAY01,
+    color: colors.GRAY03,
     fontSize: maxScale(12),
   },
 });
