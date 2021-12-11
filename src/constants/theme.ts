@@ -2,6 +2,9 @@ import {StyleSheet} from 'react-native';
 import {scale} from 'react-native-size-matters';
 
 export const colors = {
+  PRIMARY_BLACK: '#181A18',
+  PRIMARY_WHITE: '#FCFCFC',
+
   // Main
   MAIN: '#3C4650',
 
@@ -37,10 +40,114 @@ export const maxScale = (size: number) => {
 };
 
 /** 목적_폰트크기_폰트 앞글자_폰트타입 */
-export const ScaledTextStyles = StyleSheet.create({
-  button1_14_n_m: {
+export const textStyles = StyleSheet.create({
+  /** Regular */
+  font_NR22: {
     fontFamily: 'Noto Sans KR',
-    fontSize: maxScale(14),
-    lineHeight: maxScale(18),
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 22,
+    lineHeight: 32,
+  },
+  font_NR20: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 20,
+    lineHeight: 29,
+  },
+  font_NR16: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 16,
+    lineHeight: 23,
+  },
+  font_NR14: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  font_NR12: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 12,
+    lineHeight: 17,
+  },
+
+  /** Medium */
+  font_NM22: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: 22,
+    lineHeight: 32,
+  },
+  font_NM20: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: 20,
+    lineHeight: 29,
+  },
+  font_NM16: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: 16,
+    lineHeight: 23,
+  },
+  font_NM14: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  font_NM12: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: 12,
+    lineHeight: 17,
+  },
+  /** Bold */
+  font_NB22: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 22,
+    lineHeight: 32,
+  },
+  font_NB20: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 20,
+    lineHeight: 29,
+  },
+  font_NB16: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 16,
+    lineHeight: 23,
+  },
+  font_NB14: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  font_NB12: {
+    fontFamily: 'Noto Sans KR',
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: 12,
+    lineHeight: 17,
   },
 });
