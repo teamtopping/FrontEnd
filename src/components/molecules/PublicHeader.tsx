@@ -5,11 +5,15 @@ import {
   ImageSourcePropType,
   Text,
   TouchableOpacity,
+  ViewStyle,
+  StyleProp,
 } from 'react-native';
 import {colors, maxScale} from '~/constants/theme';
 import {IconButton} from '../atoms/IconButton';
 
 export interface Props {
+  isDarkMode?: boolean;
+  containerStyle?: StyleProp<ViewStyle>;
   leftImage?: ImageSourcePropType;
   centerText?: string;
   rightText?: string;
@@ -19,7 +23,7 @@ export interface Props {
 
 export const PublicHeader = (props: Props) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, props.containerStyle]}>
       <View style={styles.leftContent}>
         {props.leftImage && (
           <IconButton
@@ -30,7 +34,13 @@ export const PublicHeader = (props: Props) => {
       </View>
       <View style={styles.centerContent}>
         {props.centerText && (
-          <Text style={styles.centerText}>{props.centerText}</Text>
+          <Text
+            style={[
+              {color: props.isDarkMode ? colors.FFF : colors.GRAY01},
+              styles.centerText,
+            ]}>
+            {props.centerText}
+          </Text>
         )}
       </View>
       <View style={styles.rightContent}>
@@ -38,7 +48,13 @@ export const PublicHeader = (props: Props) => {
           <TouchableOpacity
             hitSlop={{top: 7, right: 7, left: 7, bottom: 7}}
             onPress={props.onPressRight}>
-            <Text style={styles.rightText}>{props.rightText}</Text>
+            <Text
+              style={[
+                {color: props.isDarkMode ? colors.FFF : colors.GRAY03},
+                styles.rightText,
+              ]}>
+              {props.rightText}
+            </Text>
           </TouchableOpacity>
         )}
       </View>
@@ -73,10 +89,8 @@ const styles = StyleSheet.create({
   centerText: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: colors.GRAY01,
   },
   rightText: {
     fontSize: 12,
-    color: colors.GRAY03,
   },
 });

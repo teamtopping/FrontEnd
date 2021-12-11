@@ -5,6 +5,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {IMAGES} from '~/constants/images';
+import {colors} from '~/constants/theme';
 import {PublicHeader} from './PublicHeader';
 
 const GROUP_ID = 'PublicHeader';
@@ -33,6 +34,13 @@ storiesOf('components|molecules', module)
         onPressLeft={action('onPressLeft')}
         onPressRight={action('onPressRight')}
       />
+      <PublicHeader
+        isDarkMode
+        leftImage={IMAGES.icBackWhite}
+        centerText={'플레이트 생성'}
+        onPressLeft={action('onPressLeft')}
+        containerStyle={styles.darkMode}
+      />
     </View>
   ));
 
@@ -42,5 +50,8 @@ const styles = ScaledSheet.create({
   },
   decorator: {
     flex: 1,
+  },
+  darkMode: {
+    backgroundColor: colors.MAIN,
   },
 });
