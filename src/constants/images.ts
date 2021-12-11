@@ -4,4 +4,5 @@ export const IMAGES = {
   private: require('@assets/icon/private.png'),
   fail: require('@assets/icon/fail.png'),
   success: require('@assets/icon/success.png'),
+  icBack: require('@assets/icon/icBack.png'),
 };
