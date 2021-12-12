@@ -1,17 +1,15 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, TextInputProps} from 'react-native';
 
-import PublicTextInput, {
-  PublicTextInputProps,
-} from '@components/atoms/PublicTextInput';
+import PublicTextInput from '@components/atoms/PublicTextInput';
 import {colors, maxScale} from '~/constants/theme';
 import {IMAGES} from '~/constants/images';
 
 type InputType = 'default' | 'password';
-export interface RegisterInputProps extends PublicTextInputProps {
-  title?: string;
+export interface RegisterInputProps extends TextInputProps {
+  label?: string;
   type?: InputType;
-  returnMsg?: string;
+  errorMsg?: string;
 }
 
 const RegisterInput = ({...props}: RegisterInputProps) => {
@@ -19,8 +17,8 @@ const RegisterInput = ({...props}: RegisterInputProps) => {
   const [isPrivate, setPrivate] = useState<boolean>(true);
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>{props.title}</Text>
+      <View style={styles.label}>
+        <Text style={styles.inputTitle}>{props.label}</Text>
       </View>
       <View
         style={[
@@ -33,22 +31,22 @@ const RegisterInput = ({...props}: RegisterInputProps) => {
             onBlur={() => setIsFocus(false)}
             secureTextEntry={isPrivate ? true : false}
             img={isPrivate ? IMAGES.preivew : IMAGES.private}
+            value={props.value}
             onPressIcon={() => {
               isPrivate ? setPrivate(false) : setPrivate(true);
-            }}>
-            {props.value}
-          </PublicTextInput>
+            }}
+          />
         ) : (
           <PublicTextInput
             onFocus={() => setIsFocus(true)}
             onBlur={() => setIsFocus(false)}
-            img={props.value ? IMAGES.delete : null}>
-            {props.value}
-          </PublicTextInput>
+            img={props.value ? IMAGES.delete : undefined}
+            value={props.value}
+          />
         )}
       </View>
-      <View style={styles.returnZone}>
-        <Text style={[styles.returnMsg]}>{props.returnMsg}</Text>
+      <View style={styles.errorContainer}>
+        <Text style={[styles.errorMsg]}>{props.errorMsg}</Text>
       </View>
     </View>
   );
@@ -62,19 +60,19 @@ const styles = StyleSheet.create({
     width: '90%',
     color: colors.GRAY01,
   },
-  header: {
+  label: {
     marginBottom: maxScale(6),
   },
-  title: {
+  inputTitle: {
     fontSize: maxScale(20),
   },
   input: {
     borderBottomWidth: 1,
   },
-  returnZone: {
+  errorContainer: {
     marginTop: maxScale(8),
   },
-  returnMsg: {
+  errorMsg: {
     color: colors.GRAY03,
     fontSize: maxScale(12),
   },
