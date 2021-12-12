@@ -14,9 +14,9 @@ import {IconButton} from '../atoms/IconButton';
 export interface Props {
   isDarkMode?: boolean;
   containerStyle?: StyleProp<ViewStyle>;
-  leftImage?: ImageSourcePropType;
-  centerText?: string;
-  rightText?: string;
+  leftImg?: ImageSourcePropType;
+  centerTxt?: string;
+  rightTxt?: string;
   onPressLeft?: () => void;
   onPressRight?: () => void;
 }
@@ -25,35 +25,32 @@ export const PublicHeader = (props: Props) => {
   return (
     <View style={[styles.container, props.containerStyle]}>
       <View style={styles.leftContent}>
-        {props.leftImage && (
-          <IconButton
-            image={props.leftImage}
-            imageStyle={styles.leftContainer}
-          />
+        {props.leftImg && (
+          <IconButton img={props.leftImg} imgStyle={styles.leftContainer} />
         )}
       </View>
       <View style={styles.centerContent}>
-        {props.centerText && (
+        {props.centerTxt && (
           <Text
             style={[
               {color: props.isDarkMode ? colors.FFF : colors.GRAY01},
-              styles.centerText,
+              styles.centerTxt,
             ]}>
-            {props.centerText}
+            {props.centerTxt}
           </Text>
         )}
       </View>
       <View style={styles.rightContent}>
-        {props.rightText && (
+        {props.rightTxt && (
           <TouchableOpacity
             hitSlop={{top: 7, right: 7, left: 7, bottom: 7}}
             onPress={props.onPressRight}>
             <Text
               style={[
                 {color: props.isDarkMode ? colors.FFF : colors.GRAY03},
-                styles.rightText,
+                styles.rightTxt,
               ]}>
-              {props.rightText}
+              {props.rightTxt}
             </Text>
           </TouchableOpacity>
         )}
@@ -65,8 +62,8 @@ export const PublicHeader = (props: Props) => {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    marginTop: maxScale(22),
     flexDirection: 'row',
+    marginTop: maxScale(22),
     marginHorizontal: maxScale(25),
     alignItems: 'center',
   },
@@ -86,11 +83,11 @@ const styles = StyleSheet.create({
     width: maxScale(24),
     height: maxScale(24),
   },
-  centerText: {
+  centerTxt: {
     fontSize: 16,
     fontWeight: 'bold',
   },
-  rightText: {
+  rightTxt: {
     fontSize: 12,
   },
 });

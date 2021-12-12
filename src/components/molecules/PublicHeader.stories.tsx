@@ -20,24 +20,24 @@ storiesOf('components|molecules', module)
   .add(GROUP_ID, () => (
     <View style={styles.container}>
       <PublicHeader
-        rightText={'건너뛰기'}
+        rightTxt={'건너뛰기'}
         onPressRight={action('onPressRight')}
       />
       <PublicHeader
-        leftImage={IMAGES.icBack}
-        centerText={'회원가입'}
+        leftImg={IMAGES.icBack}
+        centerTxt={'회원가입'}
         onPressLeft={action('onPressLeft')}
       />
       <PublicHeader
-        leftImage={IMAGES.icBack}
-        rightText={'건너뛰기'}
+        leftImg={IMAGES.icBack}
+        rightTxt={'건너뛰기'}
         onPressLeft={action('onPressLeft')}
         onPressRight={action('onPressRight')}
       />
       <PublicHeader
         isDarkMode
-        leftImage={IMAGES.icBackWhite}
-        centerText={'플레이트 생성'}
+        leftImg={IMAGES.icBackWhite}
+        centerTxt={'플레이트 생성'}
         onPressLeft={action('onPressLeft')}
         containerStyle={styles.darkMode}
       />

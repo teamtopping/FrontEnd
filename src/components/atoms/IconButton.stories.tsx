@@ -15,8 +15,8 @@ storiesOf('components|atoms', module)
   .add(GROUP_ID, () => (
     <View style={styles.container}>
       <IconButton
-        image={IMAGES.icBack}
-        buttonStyle={styles.cancel}
+        img={IMAGES.icBack}
+        btnStyle={styles.cancel}
         onPressButton={action('onPressButton')}
       />
     </View>
