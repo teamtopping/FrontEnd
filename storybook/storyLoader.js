@@ -10,6 +10,7 @@ function loadStories() {
   require('../src/components/molecules/MainButton.stories');
   require('../src/components/molecules/PublicHeader.stories');
   require('../src/components/molecules/RegisterInput.stories');
+  require('../src/components/molecules/PublicHeader.stories');
   require('../src/components/templates/AuthLoadingTemplate.stories');
   require('../src/components/templates/HomeTemplate.stories');
 }
@@ -21,6 +22,7 @@ const stories = [
   '../src/components/molecules/MainButton.stories',
   '../src/components/molecules/PublicHeader.stories',
   '../src/components/molecules/RegisterInput.stories',
+  '../src/components/molecules/PublicHeader.stories',
   '../src/components/templates/AuthLoadingTemplate.stories',
   '../src/components/templates/HomeTemplate.stories',
 ];
