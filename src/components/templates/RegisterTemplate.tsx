@@ -1,13 +1,23 @@
-import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import React, {useState} from 'react';
+import {View, StyleSheet, Text, TextInputProps} from 'react-native';
 import {IMAGES} from '@constants/images';
+
+import {colors, maxScale} from '~/constants/theme';
 
 import {PublicHeader} from '../molecules/PublicHeader';
 import RegisterInput from '../molecules/RegisterInput';
 import MainButton from '../molecules/MainButton';
-import {colors, maxScale} from '~/constants/theme';
 
-const RegisterTemplate = () => {
+interface Props extends TextInputProps {
+  onChangeText?: (text: string) => void;
+}
+
+const RegisterTemplate = ({...props}: Props) => {
+  const [email, setEmail] = useState('');
+  const [pwd, setPwd] = useState('');
+  const [checkPwd, setCheckPwd] = useState('');
+  const [nick, setNick] = useState('');
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -27,22 +37,29 @@ const RegisterTemplate = () => {
         <RegisterInput
           type={'default'}
           label={'이메일'}
-          errorMsg={'?????????????????'}
+          value={email}
+          onChangeText={text => setEmail(text)}
+          onPressIcon={() => setEmail('')}
+          {...props}
         />
         <RegisterInput
           type={'password'}
           label={'비밀번호'}
-          errorMsg={'?????????????????'}
+          value={pwd}
+          onChangeText={text => setPwd(text)}
         />
         <RegisterInput
           label={'비밀번호 확인'}
           type={'password'}
-          errorMsg={'?'}
+          value={checkPwd}
+          onChangeText={text => setCheckPwd(text)}
         />
         <RegisterInput
           type={'default'}
           label={'닉네임'}
-          errorMsg={'?????????????????'}
+          value={nick}
+          onChangeText={text => setNick(text)}
+          onPressIcon={() => setNick('')}
         />
       </View>
       <View style={styles.buttonContainer}>

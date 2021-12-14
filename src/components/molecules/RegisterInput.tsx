@@ -10,6 +10,7 @@ export interface RegisterInputProps extends TextInputProps {
   label?: string;
   type?: InputType;
   errorMsg?: string;
+  onPressIcon?: () => void;
 }
 
 const RegisterInput = ({...props}: RegisterInputProps) => {
@@ -32,6 +33,7 @@ const RegisterInput = ({...props}: RegisterInputProps) => {
             secureTextEntry={isPrivate ? true : false}
             img={isPrivate ? IMAGES.preivew : IMAGES.private}
             value={props.value}
+            onChangeText={props.onChangeText}
             onPressIcon={() => {
               isPrivate ? setPrivate(false) : setPrivate(true);
             }}
@@ -42,6 +44,8 @@ const RegisterInput = ({...props}: RegisterInputProps) => {
             onBlur={() => setIsFocus(false)}
             img={props.value ? IMAGES.delete : undefined}
             value={props.value}
+            onChangeText={props.onChangeText}
+            onPressIcon={props.onPressIcon}
           />
         )}
       </View>
