@@ -63,13 +63,14 @@ const styles = StyleSheet.create({
     marginBottom: maxScale(6),
   },
   inputTitle: {
-    fontSize: maxScale(20),
+    fontSize: maxScale(16),
   },
   input: {
     borderBottomWidth: 1,
   },
   errorContainer: {
     marginTop: maxScale(8),
+    marginBottom: maxScale(20),
   },
   errorMsg: {
     color: colors.GRAY03,

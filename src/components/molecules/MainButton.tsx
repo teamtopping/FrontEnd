@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     width: maxScale(320),
     height: maxScale(60),
     elevation: 5,
+    marginBottom: maxScale(20),
   },
   button: {
     borderWidth: 2,
