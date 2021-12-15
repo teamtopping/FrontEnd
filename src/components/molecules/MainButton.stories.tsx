@@ -11,6 +11,7 @@ storiesOf('components|molecules', module)
   .add('MainButton', () => (
     <View style={styles.container}>
       <MainButton title={'다음'} onPress={action('onPress')} />
+      <MainButton title={'다음'} disabled={true} onPress={action('onPress')} />
     </View>
   ));
 
