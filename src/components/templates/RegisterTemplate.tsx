@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, StyleSheet, Text, TextInputProps} from 'react-native';
 import {IMAGES} from '@constants/images';
 
@@ -7,24 +7,42 @@ import {colors, maxScale} from '~/constants/theme';
 import {PublicHeader} from '../molecules/PublicHeader';
 import RegisterInput from '../molecules/RegisterInput';
 import MainButton from '../molecules/MainButton';
+import PublicButton from '../atoms/PublicButton';
+import {STRING} from '~/constants/ko';
 
 interface Props extends TextInputProps {
-  onChangeText?: (text: string) => void;
+  isCertified?: boolean;
+  email?: string;
+  pwd?: string;
+  checkPwd?: string;
+  nick?: string;
+  emailValid?: boolean;
+  pwdValid?: boolean;
+  checkPwdValid?: boolean;
+  nickValid?: boolean;
+  emailErrMsg?: string;
+  pwdErrMsg?: string;
+  checkPwdErrMsg?: string;
+  nickErrMsg?: string;
+  btnTxt?: string;
+  onChangeEmail?: (text) => void;
+  onChangePwd?: (text) => void;
+  onChangeCheckPwd?: (text) => void;
+  onChangeNick?: (text) => void;
+  onPressEmailIcon?: () => void;
+  onPressNickIcon?: () => void;
+  onPressLeft?: () => void;
+  onPressButton?: () => void;
 }
 
-const RegisterTemplate = ({...props}: Props) => {
-  const [email, setEmail] = useState('');
-  const [pwd, setPwd] = useState('');
-  const [checkPwd, setCheckPwd] = useState('');
-  const [nick, setNick] = useState('');
-
+const RegisterTemplate = (props: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <PublicHeader
           leftImg={IMAGES.icBack}
           centerTxt={'회원가입'}
-          // TODO:: Header_onPressLeft()
+          onPressLeft={props.onPressLeft}
         />
       </View>
       <View style={styles.titleContainer}>
@@ -37,33 +55,64 @@ const RegisterTemplate = ({...props}: Props) => {
         <RegisterInput
           type={'default'}
           label={'이메일'}
-          value={email}
-          onChangeText={text => setEmail(text)}
-          onPressIcon={() => setEmail('')}
-          {...props}
+          placeholder={STRING.fillEmail}
+          value={props.email}
+          isValid={props.emailValid}
+          onChangeText={props.onChangeEmail}
+          onPressIcon={props.onPressEmailIcon}
+          errorMsg={props.emailValid === undefined ? null : props.emailErrMsg}
         />
         <RegisterInput
           type={'password'}
           label={'비밀번호'}
-          value={pwd}
-          onChangeText={text => setPwd(text)}
+          placeholder={STRING.defaultPwdInput}
+          value={props.pwd}
+          isValid={props.pwdValid}
+          onChangeText={props.onChangePwd}
+          errorMsg={
+            props.pwdValid === undefined
+              ? STRING.defaultPwdErrMsg
+              : props.pwdErrMsg
+          }
         />
         <RegisterInput
           label={'비밀번호 확인'}
           type={'password'}
-          value={checkPwd}
-          onChangeText={text => setCheckPwd(text)}
+          placeholder={STRING.defaultCheckPwd}
+          value={props.checkPwd}
+          isValid={props.checkPwdValid}
+          onChangeText={props.onChangeCheckPwd}
+          errorMsg={
+            props.checkPwdValid === undefined ? null : props.checkPwdErrMsg
+          }
         />
         <RegisterInput
           type={'default'}
           label={'닉네임'}
-          value={nick}
-          onChangeText={text => setNick(text)}
-          onPressIcon={() => setNick('')}
+          placeholder={STRING.defaultNick}
+          value={props.nick}
+          isValid={props.nickValid}
+          onChangeText={props.onChangeNick}
+          onPressIcon={props.onPressNickIcon}
+          errorMsg={props.nickValid === undefined ? null : props.nickErrMsg}
         />
       </View>
       <View style={styles.buttonContainer}>
-        <MainButton title={'다음'} onPress={() => console.log('?')} />
+        {props.emailValid &&
+        props.pwdValid &&
+        props.checkPwdValid &&
+        props.nickValid &&
+        props.isCertified ? (
+          <MainButton title={props.btnTxt} onPress={props.onPressButton} />
+        ) : (
+          <PublicButton
+            disabled={true}
+            title={props.btnTxt}
+            buttonStyle={styles.button}
+            textStyle={styles.buttonText}
+            onPress={undefined}
+          />
+        )}
       </View>
     </View>
   );
@@ -92,6 +141,15 @@ const styles = StyleSheet.create({
     color: colors.SUB_PURPLE,
   },
   buttonContainer: {
-    paddingTop: maxScale(40),
+    marginTop: maxScale(40),
+    marginBottom: maxScale(28),
+  },
+  button: {
+    borderWidth: 1,
+    borderColor: colors.GRAY05,
+    width: maxScale(320),
+  },
+  buttonText: {
+    color: colors.GRAY02,
   },
 });
