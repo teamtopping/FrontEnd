@@ -13,14 +13,26 @@ storiesOf('components|molecules', module)
         label={'이메일'}
         type={'default'}
         placeholder={STRING.fillEmail}
-        errorMsg={STRING.enableNick}
         value={'?'}
       />
       <RegisterInput
         label={'비밀번호'}
         type={'password'}
         placeholder={STRING.defaultPwdInput}
-        errorMsg={STRING.notMatchPwd}
+        isValid={true}
+      />
+      <RegisterInput
+        label={'비밀번호 확인'}
+        type={'password'}
+        placeholder={STRING.defaultCheckPwd}
+      />
+      <RegisterInput
+        label={'이메일'}
+        type={'default'}
+        placeholder={STRING.fillEmail}
+        errorMsg={STRING.enableNick}
+        value={'?'}
+        isValid={false}
       />
     </View>
   ));
