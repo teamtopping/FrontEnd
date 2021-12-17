@@ -18,7 +18,7 @@ interface PublicTextInputProps extends TextInputProps {
   onPressIcon?: () => void;
 }
 
-const PublicTextInput = ({...props}: PublicTextInputProps) => {
+const PublicTextInput = (props: PublicTextInputProps) => {
   return (
     <View style={styles.container}>
       <TextInput
@@ -29,7 +29,7 @@ const PublicTextInput = ({...props}: PublicTextInputProps) => {
         style={styles.input}
         placeholderTextColor={colors.GRAY04}
         onChangeText={props.onChangeText}
-        {...props}
+        value={props.value}
       />
       <View style={styles.inputImg}>
         <TouchableOpacity onPress={props.onPressIcon} activeOpacity={0.6}>

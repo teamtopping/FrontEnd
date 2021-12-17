@@ -1,4 +1,14 @@
 export const STRING = {
+  // labels
+  registerHeader: '회원가입',
+  emailLabel: '이메일',
+  pwdLabel: '비밀번호',
+  pwdCheckLabel: '비밀번호 확인',
+  nickLabel: '닉네임',
+  // comments
+  registerTitleStart: '가입하고 토핑업에서\n',
+  registerColoredTitle: '당신을 레벨업',
+  registerTitleEnd: '하세요!',
   // email
   fillEmail: '이메일을 입력해주세요',
   overlapEmail:
