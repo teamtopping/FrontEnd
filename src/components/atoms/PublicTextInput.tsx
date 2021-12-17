@@ -28,6 +28,7 @@ const PublicTextInput = (props: PublicTextInputProps) => {
         autoCapitalize="none"
         style={styles.input}
         placeholderTextColor={colors.GRAY04}
+        placeholder={props.placeholder}
         value={props.value}
         secureTextEntry={props.secureTextEntry}
         onChangeText={props.onChangeText}

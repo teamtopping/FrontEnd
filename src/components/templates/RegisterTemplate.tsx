@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   title: {
+    marginVertical: maxScale(27),
     fontSize: maxScale(20),
     fontWeight: '700',
   },
