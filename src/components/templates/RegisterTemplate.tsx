@@ -1,25 +1,30 @@
 import React from 'react';
-import {View, StyleSheet, Text, TextInputProps} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import {IMAGES} from '@constants/images';
 
 import {colors, maxScale} from '~/constants/theme';
+import {STRING} from '~/constants/ko';
 
 import {PublicHeader} from '../molecules/PublicHeader';
 import RegisterInput from '../molecules/RegisterInput';
 import MainButton from '../molecules/MainButton';
-import PublicButton from '../atoms/PublicButton';
-import {STRING} from '~/constants/ko';
 
-interface Props extends TextInputProps {
+import {ValueObj, ValidObj} from '../pages/RegisterPage';
+/* ! ValueObj, ValidObj in RegsiterPage
+type ValueType = 'email' | 'pwd' | 'checkPwd' | 'nick';
+export type ValueObj = {
+  [key in ValueType]?: string | undefined;
+};
+
+type ValidType = 'emailValid' | 'pwdValid' | 'checkPwdValid' | 'nickValid';
+export type ValidObj = {
+  [key in ValidType]: boolean;
+};
+ */
+interface Props {
   isCertified?: boolean;
-  email?: string;
-  pwd?: string;
-  checkPwd?: string;
-  nick?: string;
-  emailValid?: boolean;
-  pwdValid?: boolean;
-  checkPwdValid?: boolean;
-  nickValid?: boolean;
+  value?: ValueObj;
+  valid?: ValidObj;
   emailErrMsg?: string;
   pwdErrMsg?: string;
   checkPwdErrMsg?: string;
@@ -41,77 +46,74 @@ const RegisterTemplate = (props: Props) => {
       <View style={styles.header}>
         <PublicHeader
           leftImg={IMAGES.icBack}
-          centerTxt={'회원가입'}
+          centerTxt={STRING.registerHeader}
           onPressLeft={props.onPressLeft}
         />
       </View>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>가입하고 토핑업에서</Text>
-        <Text style={styles.title}>
-          <Text style={styles.coloredTitle}>당신을 레벨업</Text>하세요!
-        </Text>
-      </View>
+      <Text style={styles.title}>
+        <Text>{STRING.registerTitleStart}</Text>
+        <Text style={styles.coloredTitle}>{STRING.registerColoredTitle}</Text>
+        <Text>{STRING.registerTitleEnd}</Text>
+      </Text>
       <View>
         <RegisterInput
           type={'default'}
-          label={'이메일'}
+          label={STRING.emailLabel}
           placeholder={STRING.fillEmail}
-          value={props.email}
-          isValid={props.emailValid}
+          value={props.value?.email}
+          isValid={props.valid?.emailValid}
           onChangeText={props.onChangeEmail}
           onPressIcon={props.onPressEmailIcon}
-          errorMsg={props.emailValid === undefined ? null : props.emailErrMsg}
+          errorMsg={
+            props.valid?.emailValid === undefined
+              ? undefined
+              : props.emailErrMsg
+          }
         />
         <RegisterInput
           type={'password'}
-          label={'비밀번호'}
+          label={STRING.pwdLabel}
           placeholder={STRING.defaultPwdInput}
-          value={props.pwd}
-          isValid={props.pwdValid}
+          value={props.value?.pwd}
+          isValid={props.valid?.pwdValid}
           onChangeText={props.onChangePwd}
           errorMsg={
-            props.pwdValid === undefined
+            props.valid?.pwdValid === undefined
               ? STRING.defaultPwdErrMsg
               : props.pwdErrMsg
           }
         />
         <RegisterInput
-          label={'비밀번호 확인'}
           type={'password'}
+          label={STRING.pwdCheckLabel}
           placeholder={STRING.defaultCheckPwd}
-          value={props.checkPwd}
-          isValid={props.checkPwdValid}
+          value={props.value?.checkPwd}
+          isValid={props.valid?.checkPwdValid}
           onChangeText={props.onChangeCheckPwd}
           errorMsg={
-            props.checkPwdValid === undefined ? null : props.checkPwdErrMsg
+            props.valid?.checkPwdValid === undefined
+              ? undefined
+              : props.checkPwdErrMsg
           }
         />
         <RegisterInput
           type={'default'}
-          label={'닉네임'}
+          label={STRING.nickLabel}
           placeholder={STRING.defaultNick}
-          value={props.nick}
-          isValid={props.nickValid}
+          value={props.value?.nick}
+          isValid={props.valid?.nickValid}
           onChangeText={props.onChangeNick}
           onPressIcon={props.onPressNickIcon}
-          errorMsg={props.nickValid === undefined ? null : props.nickErrMsg}
+          errorMsg={
+            props.valid?.nickValid === undefined ? undefined : props.nickErrMsg
+          }
         />
       </View>
       <View style={styles.buttonContainer}>
-        {props.emailValid &&
-        props.pwdValid &&
-        props.checkPwdValid &&
-        props.nickValid &&
-        props.isCertified ? (
+        {props.isCertified ? (
           <MainButton title={props.btnTxt} onPress={props.onPressButton} />
         ) : (
-          <PublicButton
-            disabled={true}
-            title={props.btnTxt}
-            buttonStyle={styles.button}
-            textStyle={styles.buttonText}
-            onPress={undefined}
-          />
+          <MainButton title={props.btnTxt} disabled onPress={undefined} />
         )}
       </View>
     </View>
@@ -129,9 +131,6 @@ const styles = StyleSheet.create({
   },
   header: {
     width: '100%',
-  },
-  titleContainer: {
-    paddingVertical: maxScale(26),
   },
   title: {
     fontSize: maxScale(20),

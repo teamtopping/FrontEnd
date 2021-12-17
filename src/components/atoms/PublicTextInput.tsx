@@ -28,8 +28,9 @@ const PublicTextInput = (props: PublicTextInputProps) => {
         autoCapitalize="none"
         style={styles.input}
         placeholderTextColor={colors.GRAY04}
-        onChangeText={props.onChangeText}
         value={props.value}
+        secureTextEntry={props.secureTextEntry}
+        onChangeText={props.onChangeText}
       />
       <View style={styles.inputImg}>
         <TouchableOpacity onPress={props.onPressIcon} activeOpacity={0.6}>

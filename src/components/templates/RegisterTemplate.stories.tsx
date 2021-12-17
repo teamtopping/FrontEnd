@@ -11,14 +11,6 @@ storiesOf('components|templates', module)
   .add('RegisterTemplate', () => (
     <View style={styles.container}>
       <RegisterTemplate
-        email={'?'}
-        pwd={'?'}
-        checkPwd={'?'}
-        nick={'?'}
-        emailValid={undefined}
-        pwdValid={undefined}
-        checkPwdValid={undefined}
-        nickValid={undefined}
         pwdErrMsg={STRING.defaultPwdErrMsg}
         onChangeEmail={action('act')}
         onChangePwd={action('act')}

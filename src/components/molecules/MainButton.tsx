@@ -5,7 +5,23 @@ import {colors, maxScale} from '~/constants/theme';
 
 interface Props extends ButtonProps {}
 
-const MainButton = ({...props}: Props) => {
+const MainButton = ({disabled, ...props}: Props) => {
+  if (disabled) {
+    return (
+      <PublicButton
+        buttonStyle={{
+          borderWidth: 1,
+          borderColor: colors.GRAY05,
+          width: maxScale(320),
+        }}
+        textStyle={{
+          color: colors.GRAY02,
+        }}
+        disabled
+        {...props}
+      />
+    );
+  }
   return (
     <View style={styles.wrapper}>
       <PublicButton
@@ -16,6 +32,17 @@ const MainButton = ({...props}: Props) => {
     </View>
   );
 };
+// const MainButton = ({...props}: Props) => {
+//   return (
+//     <View style={styles.wrapper}>
+//       <PublicButton
+//         buttonStyle={styles.button}
+//         textStyle={styles.buttonText}
+//         {...props}
+//       />
+//     </View>
+//   );
+// };
 
 export default MainButton;
 
