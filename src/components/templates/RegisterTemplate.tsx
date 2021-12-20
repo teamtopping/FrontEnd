@@ -4,27 +4,18 @@ import {IMAGES} from '@constants/images';
 
 import {colors, maxScale} from '~/constants/theme';
 import {STRING} from '~/constants/ko';
-
+import {
+  ValueObj as RegisterInputValueObj,
+  ValidObj as RegisterInputValidObj,
+} from '../pages/RegisterPage';
 import {PublicHeader} from '../molecules/PublicHeader';
 import RegisterInput from '../molecules/RegisterInput';
 import MainButton from '../molecules/MainButton';
 
-import {ValueObj, ValidObj} from '../pages/RegisterPage';
-/* ! ValueObj, ValidObj in RegsiterPage
-type ValueType = 'email' | 'pwd' | 'checkPwd' | 'nick';
-export type ValueObj = {
-  [key in ValueType]?: string | undefined;
-};
-
-type ValidType = 'emailValid' | 'pwdValid' | 'checkPwdValid' | 'nickValid';
-export type ValidObj = {
-  [key in ValidType]: boolean;
-};
- */
 interface Props {
   isCertified?: boolean;
-  value?: ValueObj;
-  valid?: ValidObj;
+  value?: RegisterInputValueObj;
+  valid?: RegisterInputValidObj;
   emailErrMsg?: string;
   pwdErrMsg?: string;
   checkPwdErrMsg?: string;

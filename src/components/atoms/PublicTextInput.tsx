@@ -12,13 +12,13 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {maxScale} from '~/constants/theme';
 import {colors} from '~/constants/theme';
 
-interface PublicTextInputProps extends TextInputProps {
+interface Props extends TextInputProps {
   img?: ImageSourcePropType;
   onChangeText?: (text: string) => void;
   onPressIcon?: () => void;
 }
 
-const PublicTextInput = (props: PublicTextInputProps) => {
+const PublicTextInput = (props: Props) => {
   return (
     <View style={styles.container}>
       <TextInput

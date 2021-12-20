@@ -32,17 +32,6 @@ const MainButton = ({disabled, ...props}: Props) => {
     </View>
   );
 };
-// const MainButton = ({...props}: Props) => {
-//   return (
-//     <View style={styles.wrapper}>
-//       <PublicButton
-//         buttonStyle={styles.button}
-//         textStyle={styles.buttonText}
-//         {...props}
-//       />
-//     </View>
-//   );
-// };
 
 export default MainButton;
 
