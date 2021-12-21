@@ -5,7 +5,23 @@ import {colors, maxScale} from '~/constants/theme';
 
 interface Props extends ButtonProps {}
 
-const MainButton = ({...props}: Props) => {
+const MainButton = ({disabled, ...props}: Props) => {
+  if (disabled) {
+    return (
+      <PublicButton
+        buttonStyle={{
+          borderWidth: 1,
+          borderColor: colors.GRAY05,
+          width: maxScale(320),
+        }}
+        textStyle={{
+          color: colors.GRAY02,
+        }}
+        disabled
+        {...props}
+      />
+    );
+  }
   return (
     <View style={styles.wrapper}>
       <PublicButton
@@ -24,15 +40,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 12,
     backgroundColor: colors.FFF,
-    width: maxScale(320),
+    width: '100%',
     height: maxScale(60),
     elevation: 5,
+    marginBottom: maxScale(32),
   },
   button: {
     borderWidth: 2,
     borderColor: colors.GRAY01,
     backgroundColor: colors.MAIN,
-    width: maxScale(312),
+    width: '98%',
   },
   buttonText: {
     color: colors.FFF,

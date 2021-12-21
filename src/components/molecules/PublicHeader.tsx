@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     marginTop: maxScale(22),
-    marginHorizontal: maxScale(25),
     alignItems: 'center',
   },
   leftContent: {
@@ -84,10 +83,10 @@ const styles = StyleSheet.create({
     height: maxScale(24),
   },
   centerTxt: {
-    fontSize: 16,
+    fontSize: maxScale(16),
     fontWeight: 'bold',
   },
   rightTxt: {
-    fontSize: 12,
+    fontSize: maxScale(12),
   },
 });

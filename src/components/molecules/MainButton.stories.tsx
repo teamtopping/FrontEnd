@@ -3,7 +3,6 @@ import {withKnobs} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react-native';
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-// import {colors, maxScale} from '~/constants/theme';
 import MainButton from './MainButton';
 
 storiesOf('components|molecules', module)
@@ -11,6 +10,7 @@ storiesOf('components|molecules', module)
   .add('MainButton', () => (
     <View style={styles.container}>
       <MainButton title={'다음'} onPress={action('onPress')} />
+      <MainButton title={'다음'} disabled onPress={action('onPress')} />
     </View>
   ));
 
