@@ -2,13 +2,13 @@ import {withKnobs} from '@storybook/addon-knobs';
 import {storiesOf} from '@storybook/react-native';
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import LandingPage from './LandingPage';
+import OnboardingTemplate from './OnboardingTemplate';
 
-storiesOf('components|pages', module)
+storiesOf('components|templates', module)
   .addDecorator(withKnobs)
-  .add('LandingPage', () => (
+  .add('OnboardingTemplate', () => (
     <View style={styles.container}>
-      <LandingPage />
+      <OnboardingTemplate />
     </View>
   ));
 

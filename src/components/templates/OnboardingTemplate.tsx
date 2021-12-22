@@ -6,7 +6,7 @@ import Last from '../organisms/Onboarding/Last';
 import Second from '../organisms/Onboarding/Second';
 import Third from '../organisms/Onboarding/Third';
 
-const Onboarding = () => {
+const OnboardingTemplate = () => {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -22,7 +22,7 @@ const Onboarding = () => {
   );
 };
 
-export default Onboarding;
+export default OnboardingTemplate;
 
 const styles = StyleSheet.create({
   container: {
