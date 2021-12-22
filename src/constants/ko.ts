@@ -6,9 +6,13 @@ export const STRING = {
   pwdCheckLabel: '비밀번호 확인',
   nickLabel: '닉네임',
   // comments
+  next: '다음',
+  skip: '건너뛰기',
   registerTitleStart: '가입하고 토핑업에서\n',
   registerColoredTitle: '당신을 레벨업',
   registerTitleEnd: '하세요!',
+  toppingup: ' ' + ' ' + ' ' + ' ' + ' ' + ' ' + ' ' + '토핑업!\n',
+  careerup: '나의 커리어 업!',
   // email
   fillEmail: '이메일을 입력해주세요',
   overlapEmail:

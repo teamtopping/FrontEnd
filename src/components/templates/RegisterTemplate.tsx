@@ -4,18 +4,28 @@ import {IMAGES} from '@constants/images';
 
 import {colors, maxScale} from '~/constants/theme';
 import {STRING} from '~/constants/ko';
-import {
-  ValueObj as RegisterInputValueObj,
-  ValidObj as RegisterInputValidObj,
-} from '../pages/RegisterPage';
 import {PublicHeader} from '../molecules/PublicHeader';
 import RegisterInput from '../molecules/RegisterInput';
 import MainButton from '../molecules/MainButton';
 
+// it will be export Page component
+type RegisterInputValueType = 'email' | 'pwd' | 'checkPwd' | 'nick';
+type RegisterInputValidType =
+  | 'emailValid'
+  | 'pwdValid'
+  | 'checkPwdValid'
+  | 'nickValid';
+type ValueObj = {
+  [key in RegisterInputValueType]?: string | undefined;
+};
+type ValidObj = {
+  [key in RegisterInputValidType]?: boolean;
+};
+
 interface Props {
   isCertified?: boolean;
-  value?: RegisterInputValueObj;
-  valid?: RegisterInputValidObj;
+  value?: ValueObj;
+  valid?: ValidObj;
   emailErrMsg?: string;
   pwdErrMsg?: string;
   checkPwdErrMsg?: string;

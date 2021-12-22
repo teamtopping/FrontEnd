@@ -37,7 +37,8 @@ const PublicButton = ({disabled = false, ...props}: Props) => {
       <TouchableOpacity
         activeOpacity={0.7}
         style={[buttonStyle, styles.button]}
-        disabled={disabled}>
+        disabled={disabled}
+        onPress={props.onPress}>
         <Text style={[textStyle, styles.text]}>{props.title}</Text>
       </TouchableOpacity>
     </View>

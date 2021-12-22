@@ -3,7 +3,9 @@ import {StyleSheet, ButtonProps, View} from 'react-native';
 import PublicButton from '@components/atoms/PublicButton';
 import {colors, maxScale} from '~/constants/theme';
 
-interface Props extends ButtonProps {}
+interface Props extends ButtonProps {
+  onPressButton?: () => void;
+}
 
 const MainButton = ({disabled, ...props}: Props) => {
   if (disabled) {
@@ -19,6 +21,7 @@ const MainButton = ({disabled, ...props}: Props) => {
         }}
         disabled
         {...props}
+        onPress={props.onPressButton}
       />
     );
   }

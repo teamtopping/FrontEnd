@@ -8,4 +8,10 @@ export const IMAGES = {
   /** Header component */
   icBack: require('@assets/icon/icBack.png'),
   icBackWhite: require('@assets/icon/icBackWhite.png'),
+
+  /** onBoarding */
+  firstOnBoarding: require('@assets/firstOnboard.png'),
+  secondOnBoard: require('@assets/secondOnboard.png'),
+  thirdOnBoard: require('@assets/thirdOnboard.png'),
+  lastOnBoard: require('@assets/lastOnboard.png'),
 };

@@ -26,7 +26,11 @@ export const PublicHeader = (props: Props) => {
     <View style={[styles.container, props.containerStyle]}>
       <View style={styles.leftContent}>
         {props.leftImg && (
-          <IconButton img={props.leftImg} imgStyle={styles.leftContainer} />
+          <IconButton
+            img={props.leftImg}
+            imgStyle={styles.leftContainer}
+            onPressButton={props.onPressLeft}
+          />
         )}
       </View>
       <View style={styles.centerContent}>
