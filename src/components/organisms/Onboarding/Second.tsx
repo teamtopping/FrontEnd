@@ -26,20 +26,19 @@ const Second = () => {
           }}
         />
       </View>
-      <View style={styles.component}>
-        <Image source={IMAGES.secondOnBoard} />
-      </View>
+      <Image source={IMAGES.secondOnBoard} />
       <View style={styles.component}>
         <View style={styles.introContainer}>
           <Text style={styles.intro}>{STRING.dailyGrow}</Text>
           <Text style={styles.intro}>{STRING.feelCareer}</Text>
         </View>
       </View>
+      <Image source={IMAGES.twoFourth} />
       <View style={styles.component}>
         <MainButton
           title={STRING.next}
           onPress={() => {
-            console.log('2페이지로 이동');
+            console.log('3페이지로 이동');
           }}
         />
       </View>

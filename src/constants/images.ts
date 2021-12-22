@@ -14,4 +14,8 @@ export const IMAGES = {
   secondOnBoard: require('@assets/secondOnboard.png'),
   thirdOnBoard: require('@assets/thirdOnboard.png'),
   lastOnBoard: require('@assets/lastOnboard.png'),
+  oneFourth: require('@assets/oneFourth.png'),
+  twoFourth: require('@assets/twoFourth.png'),
+  threeFourth: require('@assets/threeFourth.png'),
+  fourFourth: require('@assets/fourFourth.png'),
 };

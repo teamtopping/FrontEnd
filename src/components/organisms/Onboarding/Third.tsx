@@ -26,20 +26,19 @@ const Third = () => {
           }}
         />
       </View>
-      <View style={styles.component}>
-        <Image source={IMAGES.thirdOnBoard} />
-      </View>
+      <Image source={IMAGES.thirdOnBoard} />
       <View style={styles.component}>
         <View style={styles.introContainer}>
           <Text style={styles.intro}>{STRING.easyFun}</Text>
           <Text style={styles.intro}>{STRING.manageHabbit}</Text>
         </View>
       </View>
+      <Image source={IMAGES.threeFourth} />
       <View style={styles.component}>
         <MainButton
           title={STRING.next}
           onPress={() => {
-            console.log('2페이지로 이동');
+            console.log('last 페이지로 이동');
           }}
         />
       </View>

@@ -22,15 +22,14 @@ const First = () => {
           }}
         />
       </View>
-      <View style={styles.component}>
-        <Image source={IMAGES.firstOnBoarding} />
-      </View>
+      <Image source={IMAGES.firstOnBoarding} />
       <View style={styles.component}>
         <View style={styles.introContainer}>
           <Text style={styles.intro}>{STRING.toppingup}</Text>
           <Text style={styles.intro}>{STRING.careerup}</Text>
         </View>
       </View>
+      <Image source={IMAGES.oneFourth} />
       <View style={styles.component}>
         <MainButton
           title={STRING.next}

@@ -22,15 +22,14 @@ const Last = () => {
           }}
         />
       </View>
-      <View style={styles.component}>
-        <Image source={IMAGES.lastOnBoard} />
-      </View>
+      <Image source={IMAGES.lastOnBoard} />
       <View style={styles.component}>
         <View style={styles.introContainer}>
           <Text style={styles.intro}>{STRING.myExpereience}</Text>
           <Text style={styles.intro}>{STRING.shareEx}</Text>
         </View>
       </View>
+      <Image source={IMAGES.fourFourth} />
       <View style={styles.component}>
         <MainButton
           title={STRING.start}
