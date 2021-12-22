@@ -8,11 +8,18 @@ export const STRING = {
   // comments
   next: '다음',
   skip: '건너뛰기',
+  start: '토핑업 시작하기',
   registerTitleStart: '가입하고 토핑업에서\n',
   registerColoredTitle: '당신을 레벨업',
   registerTitleEnd: '하세요!',
-  toppingup: ' ' + ' ' + ' ' + ' ' + ' ' + ' ' + ' ' + '토핑업!\n',
+  toppingup: '토핑업!',
   careerup: '나의 커리어 업!',
+  dailyGrow: '하루하루 성장하는',
+  feelCareer: '나의 커리어를 느껴보세요',
+  easyFun: '쉽고 재미있게,',
+  manageHabbit: '지루하지 않은 습관 관리!',
+  myExpereience: '토핑업에서 성장한 나의 경험을',
+  shareEx: '친구들과 나눠보세요',
   // email
   fillEmail: '이메일을 입력해주세요',
   overlapEmail:
