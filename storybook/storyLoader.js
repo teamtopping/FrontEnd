@@ -7,6 +7,7 @@ function loadStories() {
   require('../src/components/atoms/IconButton.stories');
   require('../src/components/atoms/PublicButton.stories');
   require('../src/components/atoms/PublicTextInput.stories');
+  require('../src/components/atoms/PublicBottomSheet.stories');
   require('../src/components/molecules/MainButton.stories');
   require('../src/components/molecules/PublicHeader.stories');
   require('../src/components/molecules/RegisterInput.stories');
@@ -19,6 +20,7 @@ const stories = [
   '../src/components/atoms/IconButton.stories',
   '../src/components/atoms/PublicButton.stories',
   '../src/components/atoms/PublicTextInput.stories',
+  '../src/components/atoms/PublicBottomSheet.stories',
   '../src/components/molecules/MainButton.stories',
   '../src/components/molecules/PublicHeader.stories',
   '../src/components/molecules/RegisterInput.stories',
