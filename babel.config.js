@@ -38,6 +38,7 @@ module.exports = {
     ],
     // ['@babel/plugin-proposal-class-properties', { loose: true }], // Cannot use with storybook
     ['transform-inline-environment-variables'],
+    'react-native-reanimated/plugin'
   ],
   env: {
     production: {
